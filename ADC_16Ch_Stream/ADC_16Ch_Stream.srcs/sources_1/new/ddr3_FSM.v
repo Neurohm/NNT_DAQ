@@ -41,7 +41,7 @@ module ddr3_FSM(
 	(* KEEP = "TRUE" *)input  wire          app_rdy,
 	(* KEEP = "TRUE" *)output reg           app_en,
 	(* KEEP = "TRUE" *)output reg  [2:0]    app_cmd,
-	(* KEEP = "TRUE" *)output reg  [29:0]   app_addr,
+	(* KEEP = "TRUE" *)output reg  [28:0]   app_addr,
 	
 	(* KEEP = "TRUE" *)input  wire [255:0]  app_rd_data,
 	(* KEEP = "TRUE" *)input  wire          app_rd_data_end,
@@ -58,8 +58,8 @@ localparam FIFO_SIZE           = 128;
 localparam BURST_UI_WORD_COUNT = 2'd1; //(WORD_SIZE*BURST_MODE/UI_SIZE) = BURST_UI_WORD_COUNT : 32*8/256 = 1
 localparam ADDRESS_INCREMENT   = 5'd8; // UI Address is a word address. BL8 Burst Mode = 8.
 
-(* KEEP = "TRUE" *)reg  [29:0] cmd_byte_addr_wr;
-(* KEEP = "TRUE" *)reg  [29:0] cmd_byte_addr_rd;
+(* KEEP = "TRUE" *)reg  [28:0] cmd_byte_addr_wr;
+(* KEEP = "TRUE" *)reg  [28:0] cmd_byte_addr_rd;
 (* KEEP = "TRUE" *)reg  [1:0]  burst_count;
 
 (* KEEP = "TRUE" *)reg         write_mode;
