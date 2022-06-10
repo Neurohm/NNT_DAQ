@@ -28,7 +28,7 @@ module ADC_SPI_Control #(
         parameter ADC_RESOLUTION = 16
     )
     (
-        input wire clk,                     // The input data clock from the frqeuency generator (data_clk_freq = 2 MHz , division by 100)
+        input wire clk,                  // The input data clock from the frqeuency generator (data_clk_freq = 2 MHz , division by 100)
         input wire reset,
         input wire sampling_en,          // The sampling enable singal from the 
         input wire [15:0] DOUT,
