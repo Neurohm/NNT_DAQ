@@ -55,6 +55,16 @@ def initialize_FPGA(dev: ok.okCFrontPanel, bit_file_path):
 def print_help():
     print("pyStream.py syntax:\n python3 pyStream.py path_to_bitfile sampling_freq")
 
+def receive_data(dev: ok.okCFrontPanel, block_length, buffer_length, BTPipeAdd):
+
+    buff = bytearray(buffer_length)
+    bytes_count_or_error = dev.ReadFromBlockPipeOut(BTPipeAdd, block_length, buff)
+    if bytes_count_or_error <= 0:
+        print("Error while reading from pipe")
+        return 
+    else:
+        return buff
+
 
 def main():
     print("---------ADC Stream 16 Channel Application for Python APL---------")
@@ -88,6 +98,19 @@ def main():
     dev.SetWireInValue(0x05,0x00000001)
     dev.UpdateWireIns()
 
+    # Set values for reset=0, write_en=1 and read_en=1
+    dev.SetWireInValue(0x00,0x00000003)
+    dev.UpdateWireIns()
+
+    # While loop till the calibration is done
+    while True:
+        if dev.GetWireOutValue(0x20) == 1:
+            break
+    
+    print("Intial Calibration Done")
+    print("Starting reading from BlockThrotle Pipe...")
+
+    # Read 
     
 
 
