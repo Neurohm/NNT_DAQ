@@ -67,18 +67,13 @@ def receive_data(dev: ok.okCFrontPanel, block_length, buffer_length, BTPipeAdd):
     else:
         return buff
 
-def write_to_csv(writer, buff)
-    for i in range(0,15):           # Iteration for time samples
-        for j in range(0,N_CHANNEL-1):       # Iteration for channel
-            sample_byte =  buff[(i*2*N_CHANNEL + j*2):(i*2*N_CHANNEL + j*2 + 2)]
-            
-
+        
 
 def print_help():
-    print("pyStream.py syntax:\n python3 pyStream.py path_to_bitfile path_to_csv_file")
+    print("pyStream.py syntax:\n python3 pyProgram.py path_to_bitfile")
 
 def main():
-    print("---------ADC Stream 16 Channel Application for Python APL---------")
+    print("---------FPGA Programming and calibration check application for Python APL---------")
     print("Front Panel API version: {}".format(ok.okCFrontPanel_GetAPIVersionString()))
 
     dev = ok.okCFrontPanel()
@@ -92,11 +87,7 @@ def main():
     if not initialize_FPGA(dev, sys.argv[1]):
         print("FPGA count not be initialized.")
         sys.exit(1)
-    
-    # Opening the csv file for write mode
-    f = open(sys.argv[2], 'w')
 
-    writer = csv.writer(f)
     
     # Set values for reset=1, write_en=0 and read_en=0
     dev.SetWireInValue(0x00,0x00000004)                 
@@ -124,14 +115,6 @@ def main():
             break
     
     print("Intial Calibration Done")
-    print("Starting reading from BlockThrotle Pipe...")
-
-    # Read 
-    for i in range(1,200000):
-        buff = receive_data(dev, BLOCK_LENGTH, BUFFER_LENGTH)
-
-        # Divide the data into 16 channel samples according to sample numbers (time)
-        # If BLOCK_LENGTH = 512 bytes, the data contains 16 (time) x 16 (channels) x 16bit data
 
 
 
