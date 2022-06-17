@@ -11,7 +11,7 @@ sys.path.append(parent_dir)
 import numpy as np
 import matplotlib as plt
 
-from FrontPanelAPI import ok 
+import ok 
 
 BLOCK_LENGTH = 512
 BUFFER_LENGTH = 512
@@ -63,6 +63,7 @@ def receive_data(dev: ok.okCFrontPanel, block_length, buffer_length, BTPipeAdd):
     bytes_count_or_error = dev.ReadFromBlockPipeOut(BTPipeAdd, block_length, buff)
     if bytes_count_or_error <= 0:
         print("Error while reading from pipe")
+        print(bytes_count_or_error)
         return 
     else:
         return buff
@@ -124,6 +125,7 @@ def main():
 
     # While loop till the calibration is done
     while True:
+        dev.UpdateWireOuts()
         if dev.GetWireOutValue(0x20) == 1:
             break
     
@@ -131,8 +133,9 @@ def main():
     print("Starting reading from BlockThrotle Pipe...")
 
     # Read 
-    for i in range(1,200000):
-        buff = receive_data(dev, BLOCK_LENGTH, BUFFER_LENGTH)
+    for i in range(1,10):
+        buff = receive_data(dev, BLOCK_LENGTH, BUFFER_LENGTH, 0xa0)
+        print(buff)
         write_to_csv(writer,buff)
         
         

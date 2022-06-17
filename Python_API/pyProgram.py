@@ -11,7 +11,7 @@ sys.path.append(parent_dir)
 import numpy as np
 import matplotlib as plt
 
-from FrontPanelAPI import ok 
+import ok 
 
 BLOCK_LENGTH = 512
 BUFFER_LENGTH = 512
@@ -111,6 +111,7 @@ def main():
 
     # While loop till the calibration is done
     while True:
+        dev.UpdateWireOuts()
         if dev.GetWireOutValue(0x20) == 1:
             break
     
