@@ -134,6 +134,8 @@ def main():
         # If BLOCK_LENGTH = 512 bytes, the data contains 16 (time) x 16 (channels) x 16bit data
 
 
+if __name__ == "__main__":
+    main()
 
 
 
