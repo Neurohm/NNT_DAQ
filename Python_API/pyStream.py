@@ -67,12 +67,16 @@ def receive_data(dev: ok.okCFrontPanel, block_length, buffer_length, BTPipeAdd):
     else:
         return buff
 
-def write_to_csv(writer, buff)
-    for i in range(0,15):           # Iteration for time samples
-        for j in range(0,N_CHANNEL-1):       # Iteration for channel
-            sample_byte =  buff[(i*2*N_CHANNEL + j*2):(i*2*N_CHANNEL + j*2 + 2)]
+def write_to_csv(writer, buff):
+    # Divide the data into 16 channel samples according to sample numbers (time)
+    # If BLOCK_LENGTH = 512 bytes, the data contains 16 (time) x 16 (channels) x 16bit data
+    data_row = [None]*16
+    for i in range(0,16):
+        for j in range(0,16):
+            sample_byte =  buff[(i*2*16 + j*2):(i*2*16 + j*2 + 2)]
+            data_row[j] = int.from_bytes(sample_byte, "big", signed = "False")
+        writer.writerow(data_row)
             
-
 
 def print_help():
     print("pyStream.py syntax:\n python3 pyStream.py path_to_bitfile path_to_csv_file")
@@ -129,10 +133,9 @@ def main():
     # Read 
     for i in range(1,200000):
         buff = receive_data(dev, BLOCK_LENGTH, BUFFER_LENGTH)
-
-        # Divide the data into 16 channel samples according to sample numbers (time)
-        # If BLOCK_LENGTH = 512 bytes, the data contains 16 (time) x 16 (channels) x 16bit data
-
+        write_to_csv(writer,buff)
+        
+        
 
 if __name__ == "__main__":
     main()
