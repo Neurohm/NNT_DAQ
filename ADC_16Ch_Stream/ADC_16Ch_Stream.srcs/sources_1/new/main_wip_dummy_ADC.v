@@ -58,8 +58,11 @@ module dummy_adc_stream (
 	// Connections to ADCs
 
 	// output wire CS,
-	// output wire DCLOCK,
+	output wire DCLOCK,
 	// input wire [15:0] DOUT
+	output wire sample_ADC,
+	output wire data_adc_lastbit,
+	output wire adc_data_valid
 
 	);
 
@@ -91,6 +94,12 @@ wire          app_wdf_wren;
 
 wire          clk;
 wire          rst;
+
+
+wire 		  locked;
+
+// Debugging signals
+
 
 // Front Panel
 
@@ -135,7 +144,7 @@ wire [31:0]  po0_ep_datain;
 // ADC 
 wire 	     clk_gen_out1;
 //wire 		 adc_con_clk;
-wire 		 adc_data_valid;
+//wire 		 adc_data_valid;
 wire [255:0] adc_fifo_data ;
 
 // Clock generator for ADC clocking. 
@@ -144,9 +153,8 @@ wire [255:0] adc_fifo_data ;
 data_clk_gen uclkgen(
 	.clk_out1(clk_gen_out1),
 	.reset(ep00wire[2]),
-	.locked(),
-	.clk_in1_(sys_clk_p),
-	.clk_in1_n(sys_clk_n)
+	.locked(locked),
+	.clk_in1(clk)
 );
 
 // Clock divider for converting the ADC clock frequency from 8 MHz to 2 MHz
@@ -183,8 +191,13 @@ Dummy_ADC_16Ch udummy(
 	.freq(ep03wire),
 	.data_out(adc_fifo_data),
 	.valid(adc_data_valid),
-	.sample()
+	.sample(sample_ADC)
 );
+
+// Debugging signals from Dummy_ADC_16Ch 
+assign data_adc_lastbit = adc_fifo_data[0];
+
+
 
 
 //MIG Infrastructure Reset
@@ -323,12 +336,12 @@ okHost okHI(
 
 okWireOR # (.N(3)) wireOR (okEH, okEHx);
 okWireIn       wi00 (.okHE(okHE),                             .ep_addr(8'h00), .ep_dataout(ep00wire));
-okWireIn       wi00 (.okHE(okHE),                             .ep_addr(8'h01), .ep_dataout(ep01wire));
-okWireIn       wi00 (.okHE(okHE),                             .ep_addr(8'h02), .ep_dataout(ep02wire));
-okWireIn       wi00 (.okHE(okHE),                             .ep_addr(8'h03), .ep_dataout(ep03wire));
-okWireIn       wi00 (.okHE(okHE),                             .ep_addr(8'h04), .ep_dataout(ep04wire));
-okWireIn       wi00 (.okHE(okHE),                             .ep_addr(8'h05), .ep_dataout(ep05wire));
-okWireOut      wo00 (.okHE(okHE), .okEH(okEHx[ 0*65 +: 65 ]), .ep_addr(8'h20), .ep_datain({31'h00, init_calib_complete}));
+okWireIn       wi01 (.okHE(okHE),                             .ep_addr(8'h01), .ep_dataout(ep01wire));
+okWireIn       wi02 (.okHE(okHE),                             .ep_addr(8'h02), .ep_dataout(ep02wire));
+okWireIn       wi03 (.okHE(okHE),                             .ep_addr(8'h03), .ep_dataout(ep03wire));
+okWireIn       wi04 (.okHE(okHE),                             .ep_addr(8'h04), .ep_dataout(ep04wire));
+okWireIn       wi05 (.okHE(okHE),                             .ep_addr(8'h05), .ep_dataout(ep05wire));
+okWireOut      wo00 (.okHE(okHE), .okEH(okEHx[ 0*65 +: 65 ]), .ep_addr(8'h20), .ep_datain({30'h00,locked,init_calib_complete}));
 okWireOut      wo01 (.okHE(okHE), .okEH(okEHx[ 1*65 +: 65 ]), .ep_addr(8'h3e), .ep_datain(CAPABILITY));
 //okBTPipeIn     pi0  (.okHE(okHE), .okEH(okEHx[ 2*65 +: 65 ]), .ep_addr(8'h80), .ep_write(pi0_ep_write), .ep_blockstrobe(), .ep_dataout(pi0_ep_dataout), .ep_ready(pipe_in_ready));
 okBTPipeOut    po0  (.okHE(okHE), .okEH(okEHx[ 2*65 +: 65 ]), .ep_addr(8'ha0), .ep_read(po0_ep_read),   .ep_blockstrobe(), .ep_datain(po0_ep_datain),   .ep_ready(pipe_out_ready));
@@ -376,6 +389,6 @@ begin
 end
 endfunction
 
-assign led = xem7310_led({4'hf,ep00wire[0],ep00wire[1],app_wdf_rdy,init_calib_complete});
+assign led = xem7310_led({3'b111,ep00wire[0],ep00wire[1],app_wdf_rdy,init_calib_complete,locked});
 
 endmodule

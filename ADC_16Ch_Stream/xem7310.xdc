@@ -212,3 +212,13 @@ set_property SLEW FAST [get_ports {ddr3_ck*}]
 set_property IOSTANDARD DIFF_SSTL15 [get_ports {ddr3_ck_*}]
 
 set_clock_groups -asynchronous -group [get_clocks {mmcm0_clk0 okUH0}] -group [get_clocks {sys_clk_p clk_pll_i}]
+
+# OUTPUT for debugging
+set_property PACKAGE_PIN W9 [get_ports {DCLOCK}]
+set_property IOSTANDARD LVCMOS33 [get_ports {DCLOCK}]
+set_property PACKAGE_PIN V9 [get_ports {sample_ADC}]
+set_property IOSTANDARD LVCMOS33 [get_ports {sample_ADC}]
+set_property PACKAGE_PIN Y9 [get_ports {data_adc_lastbit}]
+set_property IOSTANDARD LVCMOS33 [get_ports {data_adc_lastbit}]
+set_property PACKAGE_PIN V8 [get_ports {adc_data_valid}]
+set_property IOSTANDARD LVCMOS33 [get_ports {adc_data_valid}]
