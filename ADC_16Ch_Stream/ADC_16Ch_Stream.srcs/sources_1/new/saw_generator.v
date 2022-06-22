@@ -17,10 +17,12 @@ reg slope;                          // slope = 1 is postive slope, slope = 0 is 
 always @(posedge clk) thres <= threshold;
 always @(posedge clk) incre <= increment;
 
+initial dout = 0;
+
 // Initializing the finite state machine 
 // The idle state will wait for the sample signal to go high 
 // The other states are when the serial data is pushed to dout  
-integer state;
+integer state = 0;
 localparam s_idle = 0,
             s_1=1, s_2=2, s_3=3, s_4=4, s_5=5, s_6=6, s_7=7, s_8=8,
             s_9=9, s_10=10, s_11=11, s_12=12, s_13=13, s_14=14, s_15=15;

@@ -19,9 +19,18 @@ reg [31:0] freq_count;
 
 reg [3:0] count; 
 
+// set intial values for registers 
+initial begin
+    valid = 1'b0;
+    sample = 1'b0;
+    freq_count = 32'd0;
+    data_out = 256'd0;
+    count = 4'd0;
+end
+
 // The idle state will wait for the sample signal to go high 
 // The other states are when the serial data is aranged and pushed to data_out   
-integer state;
+integer state = 0;
 localparam s_idle = 0,
             s_1=1, s_2=2, s_3=3, s_4=4, s_5=5, s_6=6, s_7=7, s_8=8,
             s_9=9, s_10=10, s_11=11, s_12=12, s_13=13, s_14=14, s_15=15, s_16=16;
@@ -65,10 +74,10 @@ always @(posedge clk) begin
     end else begin 
         case(state)
             s_idle: begin
+                valid <= 0;
+                count <= 0;
                 if(sample) begin 
                     state <= s_1;
-                    valid <= 0;
-                    count <= 0;
                 end         
             end 
 

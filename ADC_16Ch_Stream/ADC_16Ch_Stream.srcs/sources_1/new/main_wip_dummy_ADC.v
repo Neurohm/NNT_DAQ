@@ -1,5 +1,5 @@
 //------------------------------------------------------------------------
-// ramtest.v
+// Modified ramtest.v
 //
 // This sample uses the Xilinx MIG DDR3 controller and HDL to move data
 // from the PC to the DDR3 and vice-versa. Based on MIG generated example_top.v.
@@ -55,11 +55,13 @@ module dummy_adc_stream (
 	inout  wire [3 :0]  ddr3_dqs_n,
 	output wire         ddr3_reset_n,
 
+	output wire pipe_out_write,
 	// Connections to ADCs
 
 	// output wire CS,
 	output wire DCLOCK,
 	// input wire [15:0] DOUT
+	//output wire clk_gen_out1,
 	output wire sample_ADC,
 	output wire data_adc_lastbit,
 	output wire adc_data_valid
@@ -108,7 +110,7 @@ wire         okClk;
 wire [112:0] okHE;
 wire [64:0]  okEH;
 
-wire [31:0]  ep00wire; // reset
+wire [31:0]  ep00wire; // reset signals
 wire [31:0]  ep01wire; // sampling_en
 wire [31:0]  ep02wire; // channel_sel
 wire [31:0]  ep03wire; // freq (sampling frequency)
@@ -116,7 +118,6 @@ wire [31:0]  ep03wire; // freq (sampling frequency)
 // wires for dumy data genrator control
 wire [31:0] ep04wire; // for sawtooth generator threshold 
 wire [31:0] ep05wire; // for sawtooht generator increment 
-
 
 
 wire         pipe_in_read;
@@ -128,7 +129,7 @@ wire         pipe_in_full;
 wire         pipe_in_empty;
 reg          pipe_in_ready;
 
-wire         pipe_out_write;
+//wire         pipe_out_write;
 wire [255:0] pipe_out_data;
 wire [9:0]   pipe_out_rd_count;
 wire [6:0]   pipe_out_wr_count;
@@ -143,6 +144,7 @@ wire [31:0]  po0_ep_datain;
 
 // ADC 
 wire 	     clk_gen_out1;
+//wire  		 DCLOCK;
 //wire 		 adc_con_clk;
 //wire 		 adc_data_valid;
 wire [255:0] adc_fifo_data ;
@@ -185,7 +187,7 @@ data_clk_gen uclkgen(
 
 Dummy_ADC_16Ch udummy(
 	.clk(DCLOCK),
-	.reset(ep00wire[2]),
+	.reset(ep00wire[3]),
 	.threshold(ep04wire[15:0]),
 	.increment(ep05wire[15:0]),
 	.freq(ep03wire),
@@ -268,7 +270,7 @@ mig_7series_0 u_ddr3_256_32 (
 // OK MIG DDR3 Testbench Instatiation
 ddr3_FSM ddr3_tb (
 	.clk                (clk),
-	.reset              (ep00wire[2] | rst),
+	.reset              (ep00wire[3] | rst),
 	.reads_en           (ep00wire[0]),
 	.writes_en          (ep00wire[1]),
 	.calib_done         (init_calib_complete),
@@ -349,7 +351,7 @@ okBTPipeOut    po0  (.okHE(okHE), .okEH(okEHx[ 2*65 +: 65 ]), .ep_addr(8'ha0), .
 
 // Input FIFO instantation 
 fifo_w256_128_r256_128 inFIFO (
-	.rst(ep00wire[2]),                      // input wire rst
+	.rst(ep00wire[3]),                      // input wire rst
 	.wr_clk(DCLOCK),              // input wire wr_clk connected to the data_clk for the ADC
 	.rd_clk(clk),                // input wire rd_clk
 	.din(adc_fifo_data),                      // input wire [255 : 0] din
@@ -365,7 +367,7 @@ fifo_w256_128_r256_128 inFIFO (
 );
 
 fifo_w256_128_r32_1024 okPipeOut_fifo (
-	.rst(ep00wire[2]),
+	.rst(ep00wire[3]),
 	.wr_clk(clk),
 	.rd_clk(okClk),
 	.din(pipe_out_data), // Bus [256 : 0]

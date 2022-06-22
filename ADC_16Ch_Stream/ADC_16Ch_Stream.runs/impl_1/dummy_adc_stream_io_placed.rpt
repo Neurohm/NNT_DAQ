@@ -1,8 +1,8 @@
 Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------
 | Tool Version              : Vivado v.2021.2 (win64) Build 3367213 Tue Oct 19 02:48:09 MDT 2021
-| Date                      : Mon Jun 20 19:43:04 2022
-| Host                      : LAPTOP-4PT5HRKL running 64-bit major release  (build 9200)
+| Date                      : Tue Jun 21 14:17:03 2022
+| Host                      : X-MJISB050PC03 running 64-bit major release  (build 9200)
 | Command                   : report_io -file dummy_adc_stream_io_placed.rpt
 | Design                    : dummy_adc_stream
 | Device                    : xc7a200t
@@ -25,7 +25,7 @@ Table of Contents
 +---------------+
 | Total User IO |
 +---------------+
-|           125 |
+|           126 |
 +---------------+
 
 
@@ -392,7 +392,7 @@ Table of Contents
 | R3         |                  | High Range | IO_L3P_T0_DQS_34             | User IO       |             |      34 |            |      |                      |                      |         |            |           |          |          |                  |              |                   |              |
 | R4         |                  | High Range | IO_L13P_T2_MRCC_34           | User IO       |             |      34 |            |      |                      |                      |         |            |           |          |          |                  |              |                   |              |
 | R5         |                  | High Range | VCCO_34                      | VCCO          |             |      34 |            |      |                      |                      |    3.30 |            |           |          |          |                  |              |                   |              |
-| R6         |                  | High Range | IO_L17P_T2_34                | User IO       |             |      34 |            |      |                      |                      |         |            |           |          |          |                  |              |                   |              |
+| R6         | pipe_out_write   | High Range | IO_L17P_T2_34                | OUTPUT        | LVCMOS33    |      34 |         12 | SLOW |                      |            FP_VTT_50 |         | FIXED      |           |          |          | NONE             |              |                   |              |
 | R7         |                  |            | VCCINT                       | VCCINT        |             |         |            |      |                      |                      |         |            |           |          |          |                  |              |                   |              |
 | R8         |                  |            | GND                          | GND           |             |         |            |      |                      |                      |     0.0 |            |           |          |          |                  |              |                   |              |
 | R9         |                  |            | VCCINT                       | VCCINT        |             |         |            |      |                      |                      |         |            |           |          |          |                  |              |                   |              |
