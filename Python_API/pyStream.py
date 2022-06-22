@@ -103,10 +103,10 @@ def main():
 
     writer = csv.writer(f)
     
-    # Set values for reset=1, write_en=0 and read_en=0
-    dev.SetWireInValue(0x00,0x00000004)                 
+    # Set values for reset1 = 1, reset=1, write_en=0 and read_en=0
+    dev.SetWireInValue(0x00,0x0000000C)                 
     # Set value for sampling enable
-    dev.SetWireInValue(0x01,0x00000000)
+    dev.SetWireInValue(0x01,0x00000001)
     # Set value for channel selection 
     dev.SetWireInValue(0x02,0x0000ffff)
     # Set value for sampling frequency 
@@ -119,20 +119,32 @@ def main():
     dev.SetWireInValue(0x05,0x00000001)
     dev.UpdateWireIns()
 
-    # Set values for reset=0, write_en=1 and read_en=1
-    dev.SetWireInValue(0x00,0x00000003)
+    # Set values for reset1=1, reset=0, write_en=1 and read_en=1
+    dev.SetWireInValue(0x00,0x0000000B)
     dev.UpdateWireIns()
 
     # While loop till the calibration is done
     while True:
         dev.UpdateWireOuts()
-        if dev.GetWireOutValue(0x20) == 1:
+        if (dev.GetWireOutValue(0x20) & 0x00000001)  == 1:
             break
-    
     print("Intial Calibration Done")
-    print("Starting reading from BlockThrotle Pipe...")
 
-    # Read 
+    # While loop till the clock generation PLL is locked
+    while True:
+        dev.UpdateWireOuts()
+        if (dev.GetWireOutValue(0x20) & 0x00000002)  == 2:
+            break
+    print("Clock generation module PLL locked.")
+
+    print("Reseting the blocks whose input clock is DCLOCK")
+    time.sleep(0.02) # sleep for 20us so that DCLOCK has more than 2 cycles complete
+    # Set values for reset1=0, reset=0, write_en=1 and read_en=1
+    dev.SetWireInValue(0x00,0x00000003)
+    dev.UpdateWireIns()
+
+    print("Starting reading from BlockThrotle Pipe...")
+    # Read from BTPipeOut
     for i in range(1,10):
         buff = receive_data(dev, BLOCK_LENGTH, BUFFER_LENGTH, 0xa0)
         print(buff)

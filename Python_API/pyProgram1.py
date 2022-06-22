@@ -87,44 +87,6 @@ def main():
         print("FPGA count not be initialized.")
         sys.exit(1)
 
-    
-    # Set values for reset=1, write_en=0 and read_en=0
-    dev.SetWireInValue(0x00,0x00000004)                 
-    # Set value for sampling enable
-    dev.SetWireInValue(0x01,0x00000001)
-    # Set value for channel selection 
-    dev.SetWireInValue(0x02,0x0000ffff)
-    # Set value for sampling frequency 
-    # Threshold = (clk frequency/sampling frequency)-1
-    # For clk frequency = 2 MHz, sampling frequency = 20 kHz, threshold value = 100
-    dev.SetWireInValue(0x03,0x00000064)
-    # Set value for sawtooth generator's threshold value 
-    dev.SetWireInValue(0x04,0x0000000f)
-    # Set value for sawtooth generator's increment value
-    dev.SetWireInValue(0x05,0x00000001)
-    dev.UpdateWireIns()
-
-    # Set values for reset=0, write_en=1 and read_en=1
-    dev.SetWireInValue(0x00,0x00000003)
-    dev.UpdateWireIns()
-
-    # While loop till the calibration is done
-    while True:
-        dev.UpdateWireOuts()
-        if (dev.GetWireOutValue(0x20) & 0x00000001)  == 1:
-            break
-    print("Intial Calibration Done")
-
-    while True:
-        dev.UpdateWireOuts()
-        if (dev.GetWireOutValue(0x20) & 0x00000002)  == 2:
-            break
-    print("Clock generation module PLL locked.")
-
-
-if __name__ == "__main__":
-    main()
-
 
 
 
