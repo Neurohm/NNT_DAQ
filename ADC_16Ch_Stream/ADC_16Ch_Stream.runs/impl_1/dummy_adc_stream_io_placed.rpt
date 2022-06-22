@@ -1,8 +1,8 @@
 Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------
 | Tool Version              : Vivado v.2021.2 (win64) Build 3367213 Tue Oct 19 02:48:09 MDT 2021
-| Date                      : Tue Jun 21 14:17:03 2022
-| Host                      : X-MJISB050PC03 running 64-bit major release  (build 9200)
+| Date                      : Wed Jun 22 12:09:50 2022
+| Host                      : LAPTOP-4PT5HRKL running 64-bit major release  (build 9200)
 | Command                   : report_io -file dummy_adc_stream_io_placed.rpt
 | Design                    : dummy_adc_stream
 | Device                    : xc7a200t

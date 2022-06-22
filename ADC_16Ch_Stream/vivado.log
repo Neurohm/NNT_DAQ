@@ -2,10 +2,10 @@
 # Vivado v2021.2 (64-bit)
 # SW Build 3367213 on Tue Oct 19 02:48:09 MDT 2021
 # IP Build 3369179 on Thu Oct 21 08:25:16 MDT 2021
-# Start of session at: Wed Jun 22 10:13:20 2022
-# Process ID: 7592
+# Start of session at: Wed Jun 22 12:04:15 2022
+# Process ID: 18972
 # Current directory: C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream
-# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent19840 C:\Users\omkol\OneDrive - purdue.edu\Academics\Purdue\Testing System\NNT_DAQ\ADC_16Ch_Stream\ADC_16Ch_Stream.xpr
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent17528 C:\Users\omkol\OneDrive - purdue.edu\Academics\Purdue\Testing System\NNT_DAQ\ADC_16Ch_Stream\ADC_16Ch_Stream.xpr
 # Log file: C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/vivado.log
 # Journal file: C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream\vivado.jou
 # Running On: LAPTOP-4PT5HRKL, OS: Windows, CPU Frequency: 2296 MHz, CPU Physical cores: 12, Host memory: 15919 MB
@@ -43,6 +43,58 @@ INFO: [Project 1-1877] Auto incremental dir location 'C:/Users/okolhe/OneDrive -
 INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1704] No user IP repositories specified
 INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2021.2/data/ip'.
-open_project: Time (s): cpu = 00:00:24 ; elapsed = 00:00:12 . Memory (MB): peak = 1383.660 ; gain = 0.000
+open_project: Time (s): cpu = 00:00:22 ; elapsed = 00:00:09 . Memory (MB): peak = 1412.648 ; gain = 0.000
+reset_run synth_1
+INFO: [Project 1-1160] Copying file C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.runs/synth_1/dummy_adc_stream.dcp to C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.srcs/utils_1/imports/synth_1 and adding it to utils fileset
+launch_runs synth_1 -jobs 6
+[Wed Jun 22 12:05:14 2022] Launched synth_1...
+Run output will be captured here: C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.runs/synth_1/runme.log
+export_ip_user_files -of_objects  [get_files {{C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.srcs/utils_1/imports/synth_1/dummy_adc_stream.dcp}}] -no_script -reset -force -quiet
+remove_files  -fileset utils_1 {{C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.srcs/utils_1/imports/synth_1/dummy_adc_stream.dcp}}
+reset_run synth_1
+launch_runs synth_1 -jobs 6
+WARNING: [Vivado 12-7122] Auto Incremental Compile:: No reference checkpoint was found in run synth_1. Auto-incremental flow will not be run, the standard flow will be run instead.
+[Wed Jun 22 12:05:58 2022] Launched synth_1...
+Run output will be captured here: C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.runs/synth_1/runme.log
+launch_runs impl_1 -jobs 6
+[Wed Jun 22 12:08:08 2022] Launched impl_1...
+Run output will be captured here: C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.runs/impl_1/runme.log
+launch_runs impl_1 -to_step write_bitstream -jobs 6
+[Wed Jun 22 12:13:09 2022] Launched impl_1...
+Run output will be captured here: C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.runs/impl_1/runme.log
+open_run impl_1
+INFO: [Device 21-403] Loading part xc7a200tfbg484-1
+Netlist sorting complete. Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.542 . Memory (MB): peak = 1710.340 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 680 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2021.2
+INFO: [Project 1-570] Preparing netlist for logic optimization
+WARNING: [Constraints 18-550] Could not create 'IBUF_LOW_PWR' constraint because net 'uclkgen/clk_in1' is not directly connected to top level port. Synthesis is ignored for IBUF_LOW_PWR but preserved for implementation.
+INFO: [Timing 38-478] Restoring timing data from binary archive.
+INFO: [Timing 38-479] Binary timing data restore complete.
+INFO: [Project 1-856] Restoring constraints from binary archive.
+INFO: [Project 1-853] Binary constraint restore complete.
+Reading XDEF placement.
+Reading placer database...
+Reading XDEF routing.
+Read XDEF File: Time (s): cpu = 00:00:01 ; elapsed = 00:00:01 . Memory (MB): peak = 2492.793 ; gain = 6.613
+Restored from archive | CPU: 1.000000 secs | Memory: 0.000000 MB |
+Finished XDEF File Restore: Time (s): cpu = 00:00:01 ; elapsed = 00:00:01 . Memory (MB): peak = 2492.793 ; gain = 6.613
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.006 . Memory (MB): peak = 2492.793 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 345 instances were transformed.
+  IOBUF => IOBUF (IBUF, OBUFT): 33 instances
+  IOBUFDS_DIFF_OUT_INTERMDISABLE => IOBUFDS_DIFF_OUT_INTERMDISABLE (IBUFDS_INTERMDISABLE_INT(x2), INV, OBUFTDS(x2)): 4 instances
+  IOBUF_INTERMDISABLE => IOBUF_INTERMDISABLE (IBUF_INTERMDISABLE, OBUFT): 32 instances
+  LUT6_2 => LUT6_2 (LUT5, LUT6): 38 instances
+  OBUFDS => OBUFDS_DUAL_BUF (INV, OBUFDS(x2)): 1 instance 
+  RAM128X1S => RAM128X1S (MUXF7, RAMS64E(x2)): 8 instances
+  RAM32M => RAM32M (RAMD32(x6), RAMS32(x2)): 215 instances
+  RAM32X1D => RAM32X1D (RAMD32(x2)): 14 instances
+
+open_run: Time (s): cpu = 00:00:26 ; elapsed = 00:00:20 . Memory (MB): peak = 2634.742 ; gain = 1222.094
+open_report: Time (s): cpu = 00:00:21 ; elapsed = 00:00:11 . Memory (MB): peak = 2738.551 ; gain = 84.141
+WARNING: [Timing 38-436] There are set_bus_skew constraint(s) in this design. Please run report_bus_skew to ensure that bus skew requirements are met.
+close_design
 exit
-INFO: [Common 17-206] Exiting Vivado at Wed Jun 22 10:48:25 2022...
+INFO: [Common 17-206] Exiting Vivado at Wed Jun 22 12:32:39 2022...
