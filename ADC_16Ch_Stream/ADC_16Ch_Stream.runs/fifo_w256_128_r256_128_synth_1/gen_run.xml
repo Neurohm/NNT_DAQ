@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GenRun Id="fifo_w256_128_r256_128_synth_1" LaunchPart="xc7a200tfbg484-1" LaunchTime="1656012605">
   <File Type="PA-TCL" Name="fifo_w256_128_r256_128.tcl"/>
-  <File Type="RDS-PROPCONSTRS" Name="fifo_w256_128_r256_128_drc_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="fifo_w256_128_r256_128_reports.tcl"/>
   <File Type="RDS-RDS" Name="fifo_w256_128_r256_128.vds"/>
   <File Type="RDS-UTIL" Name="fifo_w256_128_r256_128_utilization_synth.rpt"/>
   <File Type="RDS-UTIL-PB" Name="fifo_w256_128_r256_128_utilization_synth.pb"/>
   <File Type="RDS-DCP" Name="fifo_w256_128_r256_128.dcp"/>
-  <File Type="VDS-TIMINGSUMMARY" Name="fifo_w256_128_r256_128_timing_summary_synth.rpt"/>
-  <File Type="VDS-TIMING-PB" Name="fifo_w256_128_r256_128_timing_summary_synth.pb"/>
   <FileSet Name="sources" Type="BlockSrcs" RelSrcDir="$PSRCDIR/fifo_w256_128_r256_128">
     <File Path="$PSRCDIR/sources_1/ip/fifo_w256_128_r256_128/fifo_w256_128_r256_128.xci">
       <FileInfo>

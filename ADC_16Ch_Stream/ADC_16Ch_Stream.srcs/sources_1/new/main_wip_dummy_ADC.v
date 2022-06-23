@@ -69,6 +69,7 @@ module dummy_adc_stream (
 	);
 
 // OK RAMTest Parameters
+//localparam BLOCK_SIZE = 8; // 32 bytes / 4 bytes per word,
 localparam BLOCK_SIZE = 128; // 512 bytes / 4 bytes per word, 
 localparam FIFO_SIZE = 1023; // note that Xilinx does not allow use of the full 1024 words
 localparam BUFFER_HEADROOM = 20; // headroom for the FIFO count to account for latency
@@ -77,6 +78,7 @@ localparam BUFFER_HEADROOM = 20; // headroom for the FIFO count to account for l
 // [0] - Supports passing calibration status through FrontPanel
 localparam CAPABILITY = 16'h0001;
 
+localparam RANDOMDATA = {16'h0102,16'h0202,16'h0302,16'h0402,16'h0502,16'h0602,16'h0702,16'h0802,16'h0902,16'h1002,16'h1102,16'h1202,16'h1302,16'h1402,16'h1502,16'h1602};
 
 wire          init_calib_complete;
 reg           sys_rst;
