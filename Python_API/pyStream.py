@@ -145,11 +145,13 @@ def main():
 
     print("Starting reading from BlockThrotle Pipe...")
     # Read from BTPipeOut
-    for i in range(1,10):
+    for i in range(1,10000):
         buff = receive_data(dev, BLOCK_LENGTH, BUFFER_LENGTH, 0xa0)
-        print(buff)
         write_to_csv(writer,buff)
-        
+    print("Done reading.") 
+
+    print("Closing csv file...")
+    f.close()
         
 
 if __name__ == "__main__":
