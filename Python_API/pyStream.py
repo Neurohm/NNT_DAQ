@@ -13,8 +13,8 @@ import matplotlib as plt
 
 import ok 
 
-BLOCK_LENGTH = 512
-BUFFER_LENGTH = 512
+BLOCK_LENGTH = 32
+BUFFER_LENGTH = 32
 N_CHANNEL = 16
 
 dev_info = ok.okTDeviceInfo()
@@ -114,9 +114,9 @@ def main():
     # For clk frequency = 2 MHz, sampling frequency = 20 kHz, threshold value = 100
     dev.SetWireInValue(0x03,0x00000064)
     # Set value for sawtooth generator's threshold value 
-    dev.SetWireInValue(0x04,0x0000000f)
+    dev.SetWireInValue(0x04,0x000000ff)
     # Set value for sawtooth generator's increment value
-    dev.SetWireInValue(0x05,0x00000001)
+    dev.SetWireInValue(0x05,0x00000000)
     dev.UpdateWireIns()
 
     # Set values for reset1=1, reset=0, write_en=1 and read_en=1
@@ -144,11 +144,19 @@ def main():
     dev.UpdateWireIns()
 
     print("Starting reading from BlockThrotle Pipe...")
+    buff = bytearray(512)
     # Read from BTPipeOut
-    for i in range(1,10000):
+    for i in range(1,1000):
         buff = receive_data(dev, BLOCK_LENGTH, BUFFER_LENGTH, 0xa0)
-        write_to_csv(writer,buff)
+        #print(int.from_bytes(buff[0:2],"big", signed = "False"))
+        #print(buff[0:1])
+        print(buff)
+        #write_to_csv(writer,buff)
     print("Done reading.") 
+    temp1 = buff[0:4]
+    print(temp1)
+    print(temp1.transpose())
+
 
     print("Closing csv file...")
     f.close()
