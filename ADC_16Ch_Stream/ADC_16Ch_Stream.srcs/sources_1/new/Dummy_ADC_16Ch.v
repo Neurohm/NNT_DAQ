@@ -45,7 +45,6 @@ always @(posedge clk) begin
     if(reset) begin
         freq_count <= 32'd0;
         sample <= 0;
-        valid <= 0;
     end else begin
         if (freq_count < freq) begin
             freq_count <= freq_count + 1;
@@ -59,7 +58,6 @@ always @(posedge clk) begin
         
         if(freq_count == 0) begin
             sample <= !sample;
-            valid <= 0;
         end    
     end 
 end 

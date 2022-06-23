@@ -63,11 +63,10 @@ fifo_w256_128_r256_128 your_instance_name (
   .rd_en(rd_en),                  // input wire rd_en
   .dout(dout),                    // output wire [255 : 0] dout
   .full(full),                    // output wire full
-  .wr_ack(wr_ack),                // output wire wr_ack
   .empty(empty),                  // output wire empty
   .valid(valid),                  // output wire valid
-  .rd_data_count(rd_data_count),  // output wire [7 : 0] rd_data_count
-  .wr_data_count(wr_data_count)  // output wire [7 : 0] wr_data_count
+  .rd_data_count(rd_data_count),  // output wire [6 : 0] rd_data_count
+  .wr_data_count(wr_data_count)  // output wire [6 : 0] wr_data_count
 );
 // INST_TAG_END ------ End INSTANTIATION Template ---------
 

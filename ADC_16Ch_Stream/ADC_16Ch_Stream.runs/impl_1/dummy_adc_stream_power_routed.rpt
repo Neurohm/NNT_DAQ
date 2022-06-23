@@ -1,8 +1,8 @@
 Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2021.2 (win64) Build 3367213 Tue Oct 19 02:48:09 MDT 2021
-| Date             : Wed Jun 22 12:11:31 2022
-| Host             : LAPTOP-4PT5HRKL running 64-bit major release  (build 9200)
+| Date             : Thu Jun 23 15:42:17 2022
+| Host             : X-MJISB050PC03 running 64-bit major release  (build 9200)
 | Command          : report_power -file dummy_adc_stream_power_routed.rpt -pb dummy_adc_stream_power_summary_routed.pb -rpx dummy_adc_stream_power_routed.rpx
 | Design           : dummy_adc_stream
 | Device           : xc7a200tfbg484-1
@@ -30,14 +30,14 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 1.357        |
+| Total On-Chip Power (W)  | 1.356        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 1.185        |
+| Dynamic (W)              | 1.183        |
 | Device Static (W)        | 0.172        |
 | Effective TJA (C/W)      | 2.5          |
-| Max Ambient (C)          | 81.6         |
-| Junction Temperature (C) | 28.4         |
+| Max Ambient (C)          | 81.7         |
+| Junction Temperature (C) | 28.3         |
 | Confidence Level         | Low          |
 | Setting File             | ---          |
 | Simulation Activity File | ---          |
@@ -52,25 +52,25 @@ Table of Contents
 +--------------------------+-----------+----------+-----------+-----------------+
 | On-Chip                  | Power (W) | Used     | Available | Utilization (%) |
 +--------------------------+-----------+----------+-----------+-----------------+
-| Clocks                   |     0.046 |       35 |       --- |             --- |
-| Slice Logic              |     0.017 |    19021 |       --- |             --- |
-|   LUT as Logic           |     0.015 |     7323 |    133800 |            5.47 |
-|   Register               |    <0.001 |     7549 |    269200 |            2.80 |
+| Clocks                   |     0.044 |       35 |       --- |             --- |
+| Slice Logic              |     0.018 |    18653 |       --- |             --- |
+|   LUT as Logic           |     0.016 |     7284 |    133800 |            5.44 |
+|   Register               |    <0.001 |     7235 |    269200 |            2.69 |
 |   LUT as Distributed RAM |    <0.001 |      890 |     46200 |            1.93 |
-|   CARRY4                 |    <0.001 |      232 |     33450 |            0.69 |
+|   CARRY4                 |    <0.001 |      231 |     33450 |            0.69 |
 |   F7/F8 Muxes            |    <0.001 |       21 |    133800 |            0.02 |
 |   LUT as Shift Register  |    <0.001 |       19 |     46200 |            0.04 |
 |   BUFG                   |    <0.001 |        1 |        32 |            3.13 |
-|   Others                 |     0.000 |      259 |       --- |             --- |
-| Signals                  |     0.021 |    15470 |       --- |             --- |
-| Block RAM                |     0.003 |       10 |       365 |            2.74 |
+|   Others                 |     0.000 |      258 |       --- |             --- |
+| Signals                  |     0.021 |    15123 |       --- |             --- |
+| Block RAM                |     0.002 |       10 |       365 |            2.74 |
 | MMCM                     |     0.201 |        2 |        10 |           20.00 |
 | PLL                      |     0.166 |        2 |        10 |           20.00 |
 | I/O                      |     0.496 |      126 |       285 |           44.21 |
 | PHASER                   |     0.231 |       24 |       --- |             --- |
 | XADC                     |     0.004 |        1 |       --- |             --- |
 | Static Power             |     0.172 |          |           |                 |
-| Total                    |     1.357 |          |           |                 |
+| Total                    |     1.356 |          |           |                 |
 +--------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -80,7 +80,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.198 |       0.164 |      0.034 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.197 |       0.162 |      0.034 |       NA    | Unspecified | NA         |
 | Vccaux    |       1.800 |     0.431 |       0.400 |      0.031 |       NA    | Unspecified | NA         |
 | Vcco33    |       3.300 |     0.005 |       0.000 |      0.005 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.006 |       0.001 |      0.005 |       NA    | Unspecified | NA         |
@@ -181,17 +181,17 @@ Table of Contents
 +----------------------------------+-----------+
 | Name                             | Power (W) |
 +----------------------------------+-----------+
-| dummy_adc_stream                 |     1.185 |
+| dummy_adc_stream                 |     1.183 |
 |   ddr3_tb                        |     0.003 |
-|   inFIFO                         |     0.002 |
-|     U0                           |     0.002 |
-|       inst_fifo_gen              |     0.002 |
+|   inFIFO                         |     0.001 |
+|     U0                           |     0.001 |
+|       inst_fifo_gen              |     0.001 |
 |   okHI                           |     0.132 |
 |     core0                        |     0.015 |
 |       core0                      |     0.015 |
 |   u_ddr3_256_32                  |     0.961 |
 |     u_mig_7series_0_mig          |     0.957 |
-|       temp_mon_enabled.u_tempmon |     0.007 |
+|       temp_mon_enabled.u_tempmon |     0.006 |
 |       u_ddr3_clk_ibuf            |     0.007 |
 |       u_ddr3_infrastructure      |     0.188 |
 |       u_iodelay_ctrl             |     0.001 |

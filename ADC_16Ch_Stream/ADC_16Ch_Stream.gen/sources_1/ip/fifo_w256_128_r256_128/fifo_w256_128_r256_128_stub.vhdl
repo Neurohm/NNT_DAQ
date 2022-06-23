@@ -1,7 +1,7 @@
 -- Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2021.2 (win64) Build 3367213 Tue Oct 19 02:48:09 MDT 2021
--- Date        : Mon May  9 13:48:26 2022
+-- Date        : Thu Jun 23 15:31:20 2022
 -- Host        : X-MJISB050PC03 running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode synth_stub {c:/Users/okolhe/OneDrive - purdue.edu/Academics/Purdue/Testing
 --               System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.gen/sources_1/ip/fifo_w256_128_r256_128/fifo_w256_128_r256_128_stub.vhdl}
@@ -22,11 +22,10 @@ entity fifo_w256_128_r256_128 is
     rd_en : in STD_LOGIC;
     dout : out STD_LOGIC_VECTOR ( 255 downto 0 );
     full : out STD_LOGIC;
-    wr_ack : out STD_LOGIC;
     empty : out STD_LOGIC;
     valid : out STD_LOGIC;
-    rd_data_count : out STD_LOGIC_VECTOR ( 7 downto 0 );
-    wr_data_count : out STD_LOGIC_VECTOR ( 7 downto 0 )
+    rd_data_count : out STD_LOGIC_VECTOR ( 6 downto 0 );
+    wr_data_count : out STD_LOGIC_VECTOR ( 6 downto 0 )
   );
 
 end fifo_w256_128_r256_128;
@@ -35,7 +34,7 @@ architecture stub of fifo_w256_128_r256_128 is
 attribute syn_black_box : boolean;
 attribute black_box_pad_pin : string;
 attribute syn_black_box of stub : architecture is true;
-attribute black_box_pad_pin of stub : architecture is "rst,wr_clk,rd_clk,din[255:0],wr_en,rd_en,dout[255:0],full,wr_ack,empty,valid,rd_data_count[7:0],wr_data_count[7:0]";
+attribute black_box_pad_pin of stub : architecture is "rst,wr_clk,rd_clk,din[255:0],wr_en,rd_en,dout[255:0],full,empty,valid,rd_data_count[6:0],wr_data_count[6:0]";
 attribute x_core_info : string;
 attribute x_core_info of stub : architecture is "fifo_generator_v13_2_6,Vivado 2021.2";
 begin

@@ -359,7 +359,6 @@ fifo_w256_128_r256_128 inFIFO (
 	.rd_en(pipe_in_read),                  // input wire rd_en
 	.dout(pipe_in_data),                    // output wire [255 : 0] dout
 	.full(pipe_in_full),                    // output wire full
-	.wr_ack(),                // output wire wr_ack
 	.empty(pipe_in_empty),                  // output wire empty
 	.valid(pipe_in_valid),                  // output wire valid
 	.rd_data_count(pipe_in_rd_count),  // output wire [7 : 0] rd_data_count

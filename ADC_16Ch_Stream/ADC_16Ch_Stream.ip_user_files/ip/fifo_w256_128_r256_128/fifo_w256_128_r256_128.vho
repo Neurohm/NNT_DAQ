@@ -62,11 +62,10 @@ COMPONENT fifo_w256_128_r256_128
     rd_en : IN STD_LOGIC;
     dout : OUT STD_LOGIC_VECTOR(255 DOWNTO 0);
     full : OUT STD_LOGIC;
-    wr_ack : OUT STD_LOGIC;
     empty : OUT STD_LOGIC;
     valid : OUT STD_LOGIC;
-    rd_data_count : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
-    wr_data_count : OUT STD_LOGIC_VECTOR(7 DOWNTO 0)
+    rd_data_count : OUT STD_LOGIC_VECTOR(6 DOWNTO 0);
+    wr_data_count : OUT STD_LOGIC_VECTOR(6 DOWNTO 0)
   );
 END COMPONENT;
 -- COMP_TAG_END ------ End COMPONENT Declaration ------------
@@ -85,7 +84,6 @@ your_instance_name : fifo_w256_128_r256_128
     rd_en => rd_en,
     dout => dout,
     full => full,
-    wr_ack => wr_ack,
     empty => empty,
     valid => valid,
     rd_data_count => rd_data_count,

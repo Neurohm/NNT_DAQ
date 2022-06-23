@@ -2,8 +2,8 @@
 # Vivado v2021.2 (64-bit)
 # SW Build 3367213 on Tue Oct 19 02:48:09 MDT 2021
 # IP Build 3369179 on Thu Oct 21 08:25:16 MDT 2021
-# Start of session at: Mon May  9 13:47:21 2022
-# Process ID: 29428
+# Start of session at: Thu Jun 23 15:30:07 2022
+# Process ID: 11040
 # Current directory: C:/Users/okolhe/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.runs/fifo_w256_128_r256_128_synth_1
 # Command line: vivado.exe -log fifo_w256_128_r256_128.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source fifo_w256_128_r256_128.tcl
 # Log file: C:/Users/okolhe/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.runs/fifo_w256_128_r256_128_synth_1/fifo_w256_128_r256_128.vds

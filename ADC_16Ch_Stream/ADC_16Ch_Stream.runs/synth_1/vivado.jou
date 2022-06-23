@@ -2,12 +2,12 @@
 # Vivado v2021.2 (64-bit)
 # SW Build 3367213 on Tue Oct 19 02:48:09 MDT 2021
 # IP Build 3369179 on Thu Oct 21 08:25:16 MDT 2021
-# Start of session at: Wed Jun 22 12:06:01 2022
-# Process ID: 14196
-# Current directory: C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.runs/synth_1
+# Start of session at: Thu Jun 23 15:36:39 2022
+# Process ID: 10196
+# Current directory: C:/Users/okolhe/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.runs/synth_1
 # Command line: vivado.exe -log dummy_adc_stream.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source dummy_adc_stream.tcl
-# Log file: C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.runs/synth_1/dummy_adc_stream.vds
-# Journal file: C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.runs/synth_1\vivado.jou
-# Running On: LAPTOP-4PT5HRKL, OS: Windows, CPU Frequency: 2296 MHz, CPU Physical cores: 12, Host memory: 15919 MB
+# Log file: C:/Users/okolhe/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.runs/synth_1/dummy_adc_stream.vds
+# Journal file: C:/Users/okolhe/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.runs/synth_1\vivado.jou
+# Running On: X-MJISB050PC03, OS: Windows, CPU Frequency: 2904 MHz, CPU Physical cores: 8, Host memory: 34060 MB
 #-----------------------------------------------------------
 source dummy_adc_stream.tcl -notrace

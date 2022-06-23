@@ -24,7 +24,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='C:/Users/okolhe/OneDrive - purdue.edu/Academics/Purdue/Testing System/FPGA/Random/ADC_16Ch_Stream/ADC_16Ch_Stream.runs/fifo_w256_128_r32_1024_synth_1'
+HD_PWD='C:/Users/okolhe/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.runs/fifo_w256_128_r32_1024_synth_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log
