@@ -101,7 +101,7 @@ def main():
         sys.exit(1)
     
     # Opening the csv file for write mode
-    f = open(sys.argv[2], 'w')
+    f = open(sys.argv[2], 'w', newline='')
 
     writer = csv.writer(f)
     
@@ -120,7 +120,7 @@ def main():
     # Set value for sawtooth generator's increment value
     dev.SetWireInValue(0x05,0x00000000)
     dev.UpdateWireIns()
-
+    time.sleep(0.01)
     # Set values for reset1=1, reset=0, write_en=1 and read_en=1
     dev.SetWireInValue(0x00,0x0000000B)
     dev.UpdateWireIns()
