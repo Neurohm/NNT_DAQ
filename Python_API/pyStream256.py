@@ -13,8 +13,8 @@ import matplotlib as plt
 
 import ok 
 
-BLOCK_LENGTH = 32
-BUFFER_LENGTH = 32
+BLOCK_LENGTH = 512
+BUFFER_LENGTH = 512
 N_CHANNEL = 16
 
 dev_info = ok.okTDeviceInfo()
@@ -70,12 +70,14 @@ def receive_data(dev: ok.okCFrontPanel, block_length, buffer_length, BTPipeAdd):
 
 def write_to_csv(writer, buff):
     # Divide the data into 16 channel samples according to sample numbers (time)
-    # If BLOCK_LENGTH = 512 bytes, the data contains 16 (time) x 16 (channels) x 16bit data
+    # If BLOCK_LENGTH = 32 bytes, the data contains 1 (time) x 16 (channels) x 16bit data
     data_row = [None]*16
-    for i in range(0,16):
-        for j in range(0,16):
-            sample_byte =  buff[(i*2*16 + j*2):(i*2*16 + j*2 + 2)]
-            data_row[j] = int.from_bytes(sample_byte, "big", signed = "False")
+    for i in range(0,16):       #time
+        for j in range(0,8):   # channels
+            sample_byte =  buff[(i*2*16 + j*4):(i*2*16 + j*4 + 4)]
+            sample_byte.reverse()
+            data_row[2*j] = int.from_bytes(sample_byte[0:2], "big", signed = "False")
+            data_row[2*j+1] = int.from_bytes(sample_byte[2:4], "big", signed = "False")
         writer.writerow(data_row)
             
 
@@ -99,8 +101,7 @@ def main():
         sys.exit(1)
     
     # Opening the csv file for write mode
-    f = open(sys.argv[2], 'w')
-
+    f = open(sys.argv[2], 'w', newline='')
     writer = csv.writer(f)
     
     # Set values for reset1 = 1, reset=1, write_en=0 and read_en=0
@@ -116,9 +117,9 @@ def main():
     # Set value for sawtooth generator's threshold value 
     dev.SetWireInValue(0x04,0x000000ff)
     # Set value for sawtooth generator's increment value
-    dev.SetWireInValue(0x05,0x00000000)
+    dev.SetWireInValue(0x05,0x00000001)
     dev.UpdateWireIns()
-
+    time.sleep(0.01)
     # Set values for reset1=1, reset=0, write_en=1 and read_en=1
     dev.SetWireInValue(0x00,0x0000000B)
     dev.UpdateWireIns()
@@ -142,20 +143,13 @@ def main():
     # Set values for reset1=0, reset=0, write_en=1 and read_en=1
     dev.SetWireInValue(0x00,0x00000003)
     dev.UpdateWireIns()
-
+    
     print("Starting reading from BlockThrotle Pipe...")
     buff = bytearray(512)
     # Read from BTPipeOut
     for i in range(1,1000):
         buff = receive_data(dev, BLOCK_LENGTH, BUFFER_LENGTH, 0xa0)
-        #print(int.from_bytes(buff[0:2],"big", signed = "False"))
-        #print(buff[0:1])
-        print(buff)
-        #write_to_csv(writer,buff)
-    print("Done reading.") 
-    temp1 = buff[0:4]
-    print(temp1)
-    print(temp1.transpose())
+        write_to_csv(writer,buff)
 
 
     print("Closing csv file...")

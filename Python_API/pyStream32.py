@@ -144,7 +144,7 @@ def main():
     # Set values for reset1=0, reset=0, write_en=1 and read_en=1
     dev.SetWireInValue(0x00,0x00000003)
     dev.UpdateWireIns()
-
+    
     print("Starting reading from BlockThrotle Pipe...")
     buff = bytearray(512)
     # Read from BTPipeOut
