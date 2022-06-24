@@ -1,0 +1,7 @@
+Running: xsim.dir/ADC_SPI_Control_behav/xsimk.exe -simmode gui -wdb ADC_SPI_Control_behav.wdb -simrunnum 0 -socket 56035
+Design successfully loaded
+Design Loading Memory Usage: 8200 KB (Peak: 8200 KB)
+Design Loading CPU Usage: 78 ms
+Simulation completed
+Simulation Memory Usage: 8712 KB (Peak: 8712 KB)
+Simulation CPU Usage: 93 ms
