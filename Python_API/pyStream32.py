@@ -73,10 +73,11 @@ def write_to_csv(writer, buff):
     # If BLOCK_LENGTH = 32 bytes, the data contains 1 (time) x 16 (channels) x 16bit data
     data_row = [None]*16
     for i in range(0,1):       #time
-        for j in range(0,16):   # channels
-            sample_byte =  buff[(i*2*16 + j*2):(i*2*16 + j*2 + 2)]
+        for j in range(0,8):   # channels
+            sample_byte =  buff[(i*2*16 + j*4):(i*2*16 + j*4 + 4)]
             sample_byte.reverse()
-            data_row[j] = int.from_bytes(sample_byte, "big", signed = "False")
+            data_row[2*j] = int.from_bytes(sample_byte[0:2], "big", signed = "False")
+            data_row[2*j+1] = int.from_bytes(sample_byte[2:4], "big", signed = "False")
         writer.writerow(data_row)
             
 
@@ -147,7 +148,7 @@ def main():
     print("Starting reading from BlockThrotle Pipe...")
     buff = bytearray(512)
     # Read from BTPipeOut
-    for i in range(1,1000):
+    for i in range(1,100000):
         buff = receive_data(dev, BLOCK_LENGTH, BUFFER_LENGTH, 0xa0)
         write_to_csv(writer,buff)
 
