@@ -68,7 +68,6 @@ module ADC_SPI_Control #(
             
             if(freq_count == 0) begin
                 sample <= (!sample) & sampling_en;
-                valid <= 0;
             end    
         end 
     end
