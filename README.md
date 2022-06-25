@@ -1,2 +1,2 @@
 # NNT_DAQ
-Verilog files for a FPGA based data acquisition system. 
+Verilog files and python scripts for a FPGA based data acquisition system. 
