@@ -23,7 +23,7 @@ eval( EAInclude(ISEJScriptLib) );
 
 
 ISEStep( "vivado",
-         "-log dummy_adc_stream.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source dummy_adc_stream.tcl" );
+         "-log adc_stream_clk.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source adc_stream_clk.tcl" );
 
 
 

@@ -1,0 +1,13 @@
+#-----------------------------------------------------------
+# Vivado v2021.2 (64-bit)
+# SW Build 3367213 on Tue Oct 19 02:48:09 MDT 2021
+# IP Build 3369179 on Thu Oct 21 08:25:16 MDT 2021
+# Start of session at: Sat Jun 25 16:05:22 2022
+# Process ID: 10412
+# Current directory: C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.runs/impl_1
+# Command line: vivado.exe -log adc_stream_clk.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source adc_stream_clk.tcl -notrace
+# Log file: C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.runs/impl_1/adc_stream_clk.vdi
+# Journal file: C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.runs/impl_1\vivado.jou
+# Running On: LAPTOP-4PT5HRKL, OS: Windows, CPU Frequency: 2296 MHz, CPU Physical cores: 12, Host memory: 15919 MB
+#-----------------------------------------------------------
+source adc_stream_clk.tcl -notrace

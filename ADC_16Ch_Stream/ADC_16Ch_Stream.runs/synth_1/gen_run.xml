@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a200tfbg484-1" LaunchTime="1656166510">
-  <File Type="PA-TCL" Name="dummy_adc_stream.tcl"/>
-  <File Type="RDS-PROPCONSTRS" Name="dummy_adc_stream_drc_synth.rpt"/>
-  <File Type="REPORTS-TCL" Name="dummy_adc_stream_reports.tcl"/>
-  <File Type="RDS-RDS" Name="dummy_adc_stream.vds"/>
-  <File Type="RDS-UTIL" Name="dummy_adc_stream_utilization_synth.rpt"/>
-  <File Type="RDS-UTIL-PB" Name="dummy_adc_stream_utilization_synth.pb"/>
-  <File Type="RDS-DCP" Name="dummy_adc_stream.dcp"/>
-  <File Type="VDS-TIMINGSUMMARY" Name="dummy_adc_stream_timing_summary_synth.rpt"/>
-  <File Type="VDS-TIMING-PB" Name="dummy_adc_stream_timing_summary_synth.pb"/>
+<GenRun Id="synth_1" LaunchPart="xc7a200tfbg484-1" LaunchTime="1656187446">
+  <File Type="PA-TCL" Name="adc_stream_clk.tcl"/>
+  <File Type="RDS-PROPCONSTRS" Name="adc_stream_clk_drc_synth.rpt"/>
+  <File Type="REPORTS-TCL" Name="adc_stream_clk_reports.tcl"/>
+  <File Type="RDS-RDS" Name="adc_stream_clk.vds"/>
+  <File Type="RDS-UTIL" Name="adc_stream_clk_utilization_synth.rpt"/>
+  <File Type="RDS-UTIL-PB" Name="adc_stream_clk_utilization_synth.pb"/>
+  <File Type="RDS-DCP" Name="adc_stream_clk.dcp"/>
+  <File Type="VDS-TIMINGSUMMARY" Name="adc_stream_clk_timing_summary_synth.rpt"/>
+  <File Type="VDS-TIMING-PB" Name="adc_stream_clk_timing_summary_synth.pb"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PSRCDIR/sources_1/new/ddr3_FSM.v">
@@ -158,9 +158,30 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
+    <File Path="$PSRCDIR/sources_1/new/clk_gen_CCIA.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/clk_gen.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/clk_gen_TIA.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
     <Config>
       <Option Name="DesignMode" Val="RTL"/>
-      <Option Name="TopModule" Val="dummy_adc_stream"/>
+      <Option Name="TopModule" Val="adc_stream_clk"/>
     </Config>
   </FileSet>
   <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">

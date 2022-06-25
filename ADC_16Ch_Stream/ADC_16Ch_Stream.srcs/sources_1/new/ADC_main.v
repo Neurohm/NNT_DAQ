@@ -22,7 +22,7 @@
 //------------------------------------------------------------------------
 `timescale 1ns/1ps
 
-module dummy_adc_stream (
+module adc_stream_clk (
 
 	// Frontpanel connections to Host 
 
@@ -58,7 +58,7 @@ module dummy_adc_stream (
 	// Connections to ADCs
 	output wire CS,
 	output wire DCLOCK,
-	input wire [15:0] DOUT
+	input wire [15:0] DOUT,
 
 	// Clock connections to the IC
 	output wire chop_clk_ccia,
@@ -150,7 +150,6 @@ wire [31:0]  po0_ep_datain;
 
 // ADC 
 wire 	     clk_gen_out1;
-wire  		 DCLOCK;
 //wire 		 adc_con_clk;
 wire 		 adc_data_valid;
 wire [255:0] adc_fifo_data ;
@@ -205,7 +204,7 @@ ADC_SPI_Control #(
 // Clock generation for the CCIA and TIA
 clk_gen clkgen01(
 	.sys_clk(clk),
-	.reset(ep00wire[4])
+	.reset(ep00wire[4]),
 	.chop_clk_ccia(chop_clk_ccia),
 	.clk_aux_p1(clk_aux_p1),
 	.clk_aux_p2(clk_aux_p2),
@@ -213,7 +212,7 @@ clk_gen clkgen01(
 	.auxbuf_ctrl(auxbuf_ctrl),
 	.chop_clk_tia(chop_clk_tia),
 	.rst_tia(rst_tia)
-)
+);
 
 //MIG Infrastructure Reset
 reg [31:0] rst_cnt;

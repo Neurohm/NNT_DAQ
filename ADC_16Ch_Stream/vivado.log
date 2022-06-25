@@ -2,10 +2,10 @@
 # Vivado v2021.2 (64-bit)
 # SW Build 3367213 on Tue Oct 19 02:48:09 MDT 2021
 # IP Build 3369179 on Thu Oct 21 08:25:16 MDT 2021
-# Start of session at: Sat Jun 25 09:53:19 2022
-# Process ID: 20636
+# Start of session at: Sat Jun 25 15:56:18 2022
+# Process ID: 6536
 # Current directory: C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream
-# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent11012 C:\Users\omkol\OneDrive - purdue.edu\Academics\Purdue\Testing System\NNT_DAQ\ADC_16Ch_Stream\ADC_16Ch_Stream.xpr
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent7380 C:\Users\omkol\OneDrive - purdue.edu\Academics\Purdue\Testing System\NNT_DAQ\ADC_16Ch_Stream\ADC_16Ch_Stream.xpr
 # Log file: C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/vivado.log
 # Journal file: C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream\vivado.jou
 # Running On: LAPTOP-4PT5HRKL, OS: Windows, CPU Frequency: 2296 MHz, CPU Physical cores: 12, Host memory: 15919 MB
@@ -28,59 +28,59 @@ WARNING: [Board 49-26] cannot add Board Part xilinx.com:zcu216_es:part0:1.2 avai
 WARNING: [Board 49-26] cannot add Board Part xilinx.com:zcu216ld:part0:2.0 available at C:/Xilinx/Vivado/2021.2/data/xhub/boards/XilinxBoardStore/boards/Xilinx/zcu216ld/production/2.0/board.xml as part xczu59dr-ffvf1760-2-i specified in board_part file is either invalid or not available
 WARNING: [Board 49-26] cannot add Board Part xilinx.com:zcu216ld_es:part0:1.0 available at C:/Xilinx/Vivado/2021.2/data/xhub/boards/XilinxBoardStore/boards/Xilinx/zcu216ld/es/1.0/board.xml as part xczu59dr-ffvf1760-2-i-es1 specified in board_part file is either invalid or not available
 WARNING: [Board 49-26] cannot add Board Part xilinx.com:zcu670:part0:1.0 available at C:/Xilinx/Vivado/2021.2/data/xhub/boards/XilinxBoardStore/boards/Xilinx/zcu670/1.0/board.xml as part xczu67dr-fsve1156-2-i specified in board_part file is either invalid or not available
-INFO: [Project 1-313] Project file moved from 'C:/Users/okolhe/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream' since last save.
 Scanning sources...
 Finished scanning sources
-INFO: [Project 1-1877] Auto incremental dir location 'C:/Users/okolhe/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.srcs/utils_1/imports/mig_7series_0_synth_1' of run 'mig_7series_0_synth_1' is not writable, setting it to default location 'C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.srcs/utils_1/imports/mig_7series_0_synth_1'.
-INFO: [Project 1-1877] Auto incremental dir location 'C:/Users/okolhe/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.srcs/utils_1/imports/fifo_w256_128_r256_128_synth_1' of run 'fifo_w256_128_r256_128_synth_1' is not writable, setting it to default location 'C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.srcs/utils_1/imports/fifo_w256_128_r256_128_synth_1'.
-INFO: [Project 1-1877] Auto incremental dir location 'C:/Users/okolhe/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.srcs/utils_1/imports/fifo_w256_128_r32_1024_synth_1' of run 'fifo_w256_128_r32_1024_synth_1' is not writable, setting it to default location 'C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.srcs/utils_1/imports/fifo_w256_128_r32_1024_synth_1'.
-INFO: [Project 1-1877] Auto incremental dir location 'C:/Users/okolhe/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.srcs/utils_1/imports/data_clk_gen_synth_1' of run 'data_clk_gen_synth_1' is not writable, setting it to default location 'C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.srcs/utils_1/imports/data_clk_gen_synth_1'.
-INFO: [Project 1-1877] Auto incremental dir location 'C:/Users/okolhe/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.srcs/utils_1/imports/impl_1' of run 'impl_1' is not writable, setting it to default location 'C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.srcs/utils_1/imports/impl_1'.
-INFO: [Project 1-1877] Auto incremental dir location 'C:/Users/okolhe/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.srcs/utils_1/imports/mig_7series_0_impl_1' of run 'mig_7series_0_impl_1' is not writable, setting it to default location 'C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.srcs/utils_1/imports/mig_7series_0_impl_1'.
-INFO: [Project 1-1877] Auto incremental dir location 'C:/Users/okolhe/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.srcs/utils_1/imports/fifo_w256_128_r256_128_impl_1' of run 'fifo_w256_128_r256_128_impl_1' is not writable, setting it to default location 'C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.srcs/utils_1/imports/fifo_w256_128_r256_128_impl_1'.
-INFO: [Project 1-1877] Auto incremental dir location 'C:/Users/okolhe/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.srcs/utils_1/imports/fifo_w256_128_r32_1024_impl_1' of run 'fifo_w256_128_r32_1024_impl_1' is not writable, setting it to default location 'C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.srcs/utils_1/imports/fifo_w256_128_r32_1024_impl_1'.
-INFO: [Project 1-1877] Auto incremental dir location 'C:/Users/okolhe/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.srcs/utils_1/imports/data_clk_gen_impl_1' of run 'data_clk_gen_impl_1' is not writable, setting it to default location 'C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.srcs/utils_1/imports/data_clk_gen_impl_1'.
 INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1704] No user IP repositories specified
 INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2021.2/data/ip'.
-open_project: Time (s): cpu = 00:00:27 ; elapsed = 00:00:13 . Memory (MB): peak = 1384.453 ; gain = 0.000
-export_ip_user_files -of_objects  [get_files {{C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.srcs/sources_1/new/main_wip_dummy_ADC.v}}] -no_script -reset -force -quiet
-remove_files  {{C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.srcs/sources_1/new/main_wip_dummy_ADC.v}}
-export_ip_user_files -of_objects  [get_files {{C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.srcs/sources_1/new/Dummy_ADC_16Ch.v}}] -no_script -reset -force -quiet
-remove_files  {{C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.srcs/sources_1/new/Dummy_ADC_16Ch.v}}
-export_ip_user_files -of_objects  [get_files {{C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.srcs/sources_1/new/saw_generator.v}}] -no_script -reset -force -quiet
-remove_files  {{C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.srcs/sources_1/new/saw_generator.v}}
-add_files -norecurse {{C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.srcs/sources_1/new/ADC_SPI_Control.v} {C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.srcs/sources_1/new/ADC_main.v}}
+open_project: Time (s): cpu = 00:00:21 ; elapsed = 00:00:09 . Memory (MB): peak = 1411.207 ; gain = 0.000
 reset_run synth_1
 INFO: [Project 1-1160] Copying file C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.runs/synth_1/dummy_adc_stream.dcp to C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.srcs/utils_1/imports/synth_1 and adding it to utils fileset
 launch_runs synth_1 -jobs 6
-[Sat Jun 25 10:00:07 2022] Launched synth_1...
+[Sat Jun 25 15:58:01 2022] Launched synth_1...
 Run output will be captured here: C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.runs/synth_1/runme.log
 export_ip_user_files -of_objects  [get_files {{C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.srcs/utils_1/imports/synth_1/dummy_adc_stream.dcp}}] -no_script -reset -force -quiet
 remove_files  -fileset utils_1 {{C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.srcs/utils_1/imports/synth_1/dummy_adc_stream.dcp}}
 reset_run synth_1
 launch_runs synth_1 -jobs 6
 WARNING: [Vivado 12-7122] Auto Incremental Compile:: No reference checkpoint was found in run synth_1. Auto-incremental flow will not be run, the standard flow will be run instead.
-[Sat Jun 25 10:00:43 2022] Launched synth_1...
+[Sat Jun 25 15:58:26 2022] Launched synth_1...
 Run output will be captured here: C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.runs/synth_1/runme.log
-launch_runs impl_1 -jobs 6
-[Sat Jun 25 10:03:35 2022] Launched impl_1...
-Run output will be captured here: C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.runs/impl_1/runme.log
-reset_run synth_1
-INFO: [Project 1-1160] Copying file C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.runs/synth_1/dummy_adc_stream.dcp to C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.srcs/utils_1/imports/synth_1 and adding it to utils fileset
-launch_runs synth_1 -jobs 6
-[Sat Jun 25 10:12:20 2022] Launched synth_1...
-Run output will be captured here: C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.runs/synth_1/runme.log
-export_ip_user_files -of_objects  [get_files {{C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.srcs/utils_1/imports/synth_1/dummy_adc_stream.dcp}}] -no_script -reset -force -quiet
-remove_files  -fileset utils_1 {{C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.srcs/utils_1/imports/synth_1/dummy_adc_stream.dcp}}
+set_property top adc_stream_clk [current_fileset]
 reset_run synth_1
 launch_runs synth_1 -jobs 6
 WARNING: [Vivado 12-7122] Auto Incremental Compile:: No reference checkpoint was found in run synth_1. Auto-incremental flow will not be run, the standard flow will be run instead.
-[Sat Jun 25 10:15:10 2022] Launched synth_1...
+[Sat Jun 25 16:00:13 2022] Launched synth_1...
+Run output will be captured here: C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.runs/synth_1/runme.log
+add_files -norecurse {{C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.srcs/sources_1/new/clk_gen_CCIA.v} {C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.srcs/sources_1/new/clk_gen.v} {C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.srcs/sources_1/new/clk_gen_TIA.v}}
+reset_run synth_1
+launch_runs synth_1 -jobs 6
+WARNING: [Vivado 12-7122] Auto Incremental Compile:: No reference checkpoint was found in run synth_1. Auto-incremental flow will not be run, the standard flow will be run instead.
+[Sat Jun 25 16:01:22 2022] Launched synth_1...
 Run output will be captured here: C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.runs/synth_1/runme.log
 launch_runs impl_1 -jobs 6
-[Sat Jun 25 10:16:23 2022] Launched impl_1...
+[Sat Jun 25 16:02:26 2022] Launched impl_1...
 Run output will be captured here: C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.runs/impl_1/runme.log
-reset_run impl_1
+reset_run synth_1
+INFO: [Project 1-1160] Copying file C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.runs/synth_1/adc_stream_clk.dcp to C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.srcs/utils_1/imports/synth_1 and adding it to utils fileset
+launch_runs synth_1 -jobs 6
+[Sat Jun 25 16:03:54 2022] Launched synth_1...
+Run output will be captured here: C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.runs/synth_1/runme.log
+export_ip_user_files -of_objects  [get_files {{C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.srcs/utils_1/imports/synth_1/adc_stream_clk.dcp}}] -no_script -reset -force -quiet
+remove_files  -fileset utils_1 {{C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.srcs/utils_1/imports/synth_1/adc_stream_clk.dcp}}
+reset_run synth_1
+WARNING: [Vivado 12-1017] Problems encountered:
+1. Failed to delete one or more files in run directory C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.runs/synth_1
+
+launch_runs synth_1 -jobs 6
+WARNING: [Vivado 12-7122] Auto Incremental Compile:: No reference checkpoint was found in run synth_1. Auto-incremental flow will not be run, the standard flow will be run instead.
+[Sat Jun 25 16:04:06 2022] Launched synth_1...
+Run output will be captured here: C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.runs/synth_1/runme.log
+launch_runs impl_1 -jobs 6
+[Sat Jun 25 16:05:14 2022] Launched impl_1...
+Run output will be captured here: C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.runs/impl_1/runme.log
+launch_runs impl_1 -to_step write_bitstream -jobs 6
+[Sat Jun 25 16:15:21 2022] Launched impl_1...
+Run output will be captured here: C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.runs/impl_1/runme.log
 exit
-INFO: [Common 17-206] Exiting Vivado at Sat Jun 25 10:36:11 2022...
+INFO: [Common 17-206] Exiting Vivado at Sat Jun 25 16:16:36 2022...

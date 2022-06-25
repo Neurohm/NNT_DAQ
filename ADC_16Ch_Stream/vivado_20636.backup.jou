@@ -1,0 +1,42 @@
+#-----------------------------------------------------------
+# Vivado v2021.2 (64-bit)
+# SW Build 3367213 on Tue Oct 19 02:48:09 MDT 2021
+# IP Build 3369179 on Thu Oct 21 08:25:16 MDT 2021
+# Start of session at: Sat Jun 25 09:53:19 2022
+# Process ID: 20636
+# Current directory: C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent11012 C:\Users\omkol\OneDrive - purdue.edu\Academics\Purdue\Testing System\NNT_DAQ\ADC_16Ch_Stream\ADC_16Ch_Stream.xpr
+# Log file: C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/vivado.log
+# Journal file: C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream\vivado.jou
+# Running On: LAPTOP-4PT5HRKL, OS: Windows, CPU Frequency: 2296 MHz, CPU Physical cores: 12, Host memory: 15919 MB
+#-----------------------------------------------------------
+start_gui
+open_project {C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.xpr}
+export_ip_user_files -of_objects  [get_files {{C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.srcs/sources_1/new/main_wip_dummy_ADC.v}}] -no_script -reset -force -quiet
+remove_files  {{C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.srcs/sources_1/new/main_wip_dummy_ADC.v}}
+export_ip_user_files -of_objects  [get_files {{C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.srcs/sources_1/new/Dummy_ADC_16Ch.v}}] -no_script -reset -force -quiet
+remove_files  {{C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.srcs/sources_1/new/Dummy_ADC_16Ch.v}}
+export_ip_user_files -of_objects  [get_files {{C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.srcs/sources_1/new/saw_generator.v}}] -no_script -reset -force -quiet
+remove_files  {{C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.srcs/sources_1/new/saw_generator.v}}
+add_files -norecurse {{C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.srcs/sources_1/new/ADC_SPI_Control.v} {C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.srcs/sources_1/new/ADC_main.v}}
+reset_run synth_1
+launch_runs synth_1 -jobs 6
+wait_on_run synth_1
+export_ip_user_files -of_objects  [get_files {{C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.srcs/utils_1/imports/synth_1/dummy_adc_stream.dcp}}] -no_script -reset -force -quiet
+remove_files  -fileset utils_1 {{C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.srcs/utils_1/imports/synth_1/dummy_adc_stream.dcp}}
+reset_run synth_1
+launch_runs synth_1 -jobs 6
+wait_on_run synth_1
+launch_runs impl_1 -jobs 6
+wait_on_run impl_1
+reset_run synth_1
+launch_runs synth_1 -jobs 6
+wait_on_run synth_1
+export_ip_user_files -of_objects  [get_files {{C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.srcs/utils_1/imports/synth_1/dummy_adc_stream.dcp}}] -no_script -reset -force -quiet
+remove_files  -fileset utils_1 {{C:/Users/omkol/OneDrive - purdue.edu/Academics/Purdue/Testing System/NNT_DAQ/ADC_16Ch_Stream/ADC_16Ch_Stream.srcs/utils_1/imports/synth_1/dummy_adc_stream.dcp}}
+reset_run synth_1
+launch_runs synth_1 -jobs 6
+wait_on_run synth_1
+launch_runs impl_1 -jobs 6
+wait_on_run impl_1
+reset_run impl_1

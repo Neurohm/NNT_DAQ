@@ -34,9 +34,6 @@ module clk_gen(
     output wire rst_tia
     );
     
-// Clock
-wire sys_clk;
-IBUFGDS osc_clk(.O(sys_clk), .I(sys_clkp), .IB(sys_clkn));
 
 clk_gen_CCIA clk_U0 (
     .clk_in(sys_clk),
