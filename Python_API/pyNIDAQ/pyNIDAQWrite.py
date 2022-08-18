@@ -1,4 +1,5 @@
 import nidaqmx
+import nidaqmx.stream_writers 
 from nidaqmx.constants import AcquisitionType
 import numpy as np 
 import matplotlib.pyplot as plt
@@ -28,9 +29,16 @@ rampgenTask.timing.cfg_samp_clk_timing(rate=Fs, sample_mode=AcquisitionType.CONT
 
 rampWriter = nidaqmx.stream_writers.AnalogSingleChannelWriter(rampgenTask.out_stream, auto_start=True)
 
+print("Signal Generation sstarted!")
 rampWriter.write_many_sample(fscvRamp1s)
 
-time.sleep(300)
+try: 
+    print("Press Ctrl+C to stop")
+    while True:
+        time.sleep(0.1)
+except KeyboardInterrupt:
+    pass
+
 rampgenTask.stop()
 rampgenTask.close()
-
+print("Signal Generation stopped!")
