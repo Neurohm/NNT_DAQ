@@ -17,7 +17,7 @@ sampling_freq_in = 50000  # in Hz
 buffer_in_size = int(sampling_freq_in/1)  # 1 s worth of data
 bufsize_callback = int(buffer_in_size)
 buffer_in_size_cfg = int(buffer_in_size)  
-chans_in = 1  # number of chan
+chans_in = 3  # number of chan
 
 # Write paramteters
 sampling_freq_out = 50000 # in Hz
@@ -34,6 +34,7 @@ N1 = (rampTime/2) * sampling_freq_out
 N2 = rampTime * sampling_freq_out
 fscvRamp = np.concatenate((np.linspace(Vmin+VRef,Vmax+VRef,num=int(N1)),np.linspace(Vmax+VRef,Vmin+VRef,num=int(N2-N1)),(Vmin+VRef)*np.ones((1,int(N-N2)))), axis=None)
 fscvRamp1s = np.tile(fscvRamp,int(1/repetetionTime))
+multifscvRamp1s = np.tile(fscvRamp, (2,int(1/repetetionTime)))
 
 # Plotting parameters
 refresh_rate_plot = 100  # in Hz
@@ -52,13 +53,13 @@ def ask_user():
 
 
 def cfg_read_task(acquisition):
-    acquisition.ai_channels.add_ai_voltage_chan('Dev1/ai0')
+    acquisition.ai_channels.add_ai_voltage_chan('Dev1/ai0:2')
     acquisition.timing.cfg_samp_clk_timing(rate=sampling_freq_in,
                                            sample_mode=constants.AcquisitionType.CONTINUOUS,
                                            samps_per_chan=buffer_in_size_cfg)
 
 def cfg_write_task(stimulation):
-    stimulation.ao_channels.add_ao_voltage_chan('Dev1/ao0',name_to_assign_to_channel="fscvrampchan")
+    stimulation.ao_channels.add_ao_voltage_chan('Dev1/ao0:1')
     stimulation.timing.cfg_samp_clk_timing(rate=sampling_freq_out, sample_mode=constants.AcquisitionType.CONTINUOUS)
 
 
@@ -80,7 +81,7 @@ task_in = nidaqmx.Task()
 task_out = nidaqmx.Task()
 cfg_read_task(task_in)
 cfg_write_task(task_out)
-stream_out = nidaqmx.stream_writers.AnalogSingleChannelWriter(task_out.out_stream, auto_start=True)
+stream_out = nidaqmx.stream_writers.AnalogMultiChannelWriter(task_out.out_stream, auto_start=True)
 
 
 stream_in = nidaqmx.stream_readers.AnalogMultiChannelReader(task_in.in_stream)
@@ -95,21 +96,27 @@ thread_user.start()
 running = True
 time_start = datetime.now()
 task_in.start()
-stream_out.write_many_sample(fscvRamp1s)
+stream_out.write_many_sample(multifscvRamp1s)
 
 # Plot a visual feedback for the user's mental health
 
-f, (ax1) = plt.subplots(1, 1, sharex='all', sharey='none')
+f, (ax1, ax2, ax3) = plt.subplots(3, 1, sharex='all', sharey='none')
 while running:  # make this adapt to number of channels automatically
     a = 0
     ax1.clear()
+    ax2.clear()
+    ax3.clear()
     ax1.plot(data[0, -sampling_freq_in * 5:].T,'r')  # 5 seconds rolling window
-    ax1.set_xlabel('time [s]')
+    ax2.plot(data[1, -sampling_freq_in * 5:].T,'k')
+    ax3.plot(data[2, -sampling_freq_in * 5:].T,'b')
+    ax3.set_xlabel('time [s]')
     ax1.set_ylabel('m/s**2')
+    ax2.set_ylabel('m/s**2')
+    ax3.set_ylabel('m/s**2')
     xticks = np.arange(0, data[0, -sampling_freq_in * 5:].size, sampling_freq_in)
     xticklabels = np.arange(0, xticks.size, 1)
-    ax1.set_xticks(xticks)
-    ax1.set_xticklabels(xticklabels)
+    ax3.set_xticks(xticks)
+    ax3.set_xticklabels(xticklabels)
     plt.pause(1/refresh_rate_plot)  # required for dynamic plot to work (if too low, nulling performance bad)
 
 #Close task to clear connection once done
