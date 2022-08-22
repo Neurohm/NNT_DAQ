@@ -29,7 +29,7 @@ rampgenTask.timing.cfg_samp_clk_timing(rate=Fs, sample_mode=AcquisitionType.CONT
 
 rampWriter = nidaqmx.stream_writers.AnalogSingleChannelWriter(rampgenTask.out_stream, auto_start=True)
 
-print("Signal Generation sstarted!")
+print("Signal Generation started!")
 rampWriter.write_many_sample(fscvRamp1s)
 
 try: 
