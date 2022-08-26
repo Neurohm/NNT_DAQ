@@ -24,7 +24,7 @@ sampling_freq_in = 50000  # in Hz
 buffer_in_size = int(sampling_freq_in/1)  # 1 s worth of data
 bufsize_callback = int(buffer_in_size)
 buffer_in_size_cfg = int(buffer_in_size)  
-chans_in = 3  # number of chan
+chans_in = 2  # number of chan
 
 # Write paramteters
 sampling_freq_out = 50000 # in Hz
@@ -59,7 +59,7 @@ def ask_user():
 
 
 def cfg_read_task(acquisition):
-    acquisition.ai_channels.add_ai_voltage_chan('Dev1/ai0:2')
+    acquisition.ai_channels.add_ai_voltage_chan('Dev1/ai0:1')
     acquisition.timing.cfg_samp_clk_timing(rate=sampling_freq_in,
                                            sample_mode=constants.AcquisitionType.CONTINUOUS,
                                            samps_per_chan=buffer_in_size_cfg)
@@ -92,7 +92,7 @@ def search_for_folderpath():
 
 # Open csv file for writing read data
 file_path_variable = search_for_folderpath()
-filename = file_path_variable + '/fscvData_' + str(datetime.now().strftime("%m%d%h%H%M%S%f"))
+filename = file_path_variable + '/TIAConstI_' + str(datetime.now().strftime("%m%d%h%H%M%S%f"))
 extension = '.csv'
 file = open(filename + extension, 'w', newline='')
 writer = csv.writer(file)
@@ -121,18 +121,18 @@ stream_out.write_many_sample(multifscvRamp1s)
 
 # Plot a visual feedback for the user's mental health
 
-f, (ax1, ax2, ax3) = plt.subplots(3, 1, sharex='all', sharey='none')
+f, (ax1, ax3) = plt.subplots(2, 1, sharex='all', sharey='none')
 while running:  # make this adapt to number of channels automatically
     a = 0
     ax1.clear()
-    ax2.clear()
+    # ax2.clear()
     ax3.clear()
     ax1.plot(data[0, -sampling_freq_in * 1:].T,'r')  # 1 second rolling window
-    ax2.plot(data[1, -sampling_freq_in * 1:].T,'k')
-    ax3.plot(data[2, -sampling_freq_in * 1:].T,'b')
+    # ax2.plot(data[1, -sampling_freq_in * 1:].T,'k')
+    ax3.plot(data[1, -sampling_freq_in * 1:].T,'b')
     ax3.set_xlabel('time [s]')
     ax1.set_ylabel('m/s**2')
-    ax2.set_ylabel('m/s**2')
+    # ax2.set_ylabel('m/s**2')
     ax3.set_ylabel('m/s**2')
     xticks = np.arange(0, data[0, -sampling_freq_in * 5:].size, sampling_freq_in)
     xticklabels = np.arange(0, xticks.size, 1)
