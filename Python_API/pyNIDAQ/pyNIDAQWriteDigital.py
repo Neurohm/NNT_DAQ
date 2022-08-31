@@ -15,11 +15,12 @@ Vmin = -0.5
 rampSlope = 300
 repetetionTime = 100e-3
 
-rampTime = (Vmax-Vmin)/rampSlope 
+rampTime = 2*(Vmax-Vmin)/rampSlope 
 N = repetetionTime * Fs
-N1 = rampTime * Fs
+N1 = (rampTime/2) * Fs
+N2 = rampTime * Fs 
 
-fscvRamp = np.concatenate((np.linspace(Vmin+VRef,Vmax+VRef,num=int(N1)),np.linspace(Vmax+VRef,Vmin+VRef,num=int(N1))[1:],(Vmin+VRef)*np.ones((1,int(N-2*N1+1)))), axis=None)
+fscvRamp = np.concatenate((np.linspace(Vmin+VRef,Vmax+VRef,num=int(N1)),np.linspace(Vmax+VRef,Vmin+VRef,num=int(N2-N1)),(Vmin+VRef)*np.ones((1,int(N-N2)))), axis=None)
 fscvRamp1s = np.tile(fscvRamp,int(1/repetetionTime))
 
 rampgenTask = nidaqmx.Task()

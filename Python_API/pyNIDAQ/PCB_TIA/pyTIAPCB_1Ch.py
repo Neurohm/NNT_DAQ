@@ -35,11 +35,10 @@ Vmax = 1
 Vmin = -0.5
 rampSlope = 300
 repetetionTime = 100e-3
-rampTime = 2*(Vmax-Vmin)/rampSlope 
+rampTime = (Vmax-Vmin)/rampSlope 
 N = repetetionTime * sampling_freq_out
-N1 = (rampTime/2) * sampling_freq_out
-N2 = rampTime * sampling_freq_out
-fscvRamp = np.concatenate((np.linspace(Vmin+VRef,Vmax+VRef,num=int(N1)),np.linspace(Vmax+VRef,Vmin+VRef,num=int(N2-N1)),(Vmin+VRef)*np.ones((1,int(N-N2)))), axis=None)
+N1 = rampTime * sampling_freq_out
+fscvRamp = np.concatenate((np.linspace(Vmin+VRef,Vmax+VRef,num=int(N1)),np.linspace(Vmax+VRef,Vmin+VRef,num=int(N1))[1:],(Vmin+VRef)*np.ones((1,int(N-2*N1+1)))), axis=None)
 fscvRamp1s = np.tile(fscvRamp,int(1/repetetionTime))
 multifscvRamp1s = np.tile(fscvRamp, (2,int(1/repetetionTime)))
 
@@ -59,7 +58,8 @@ def ask_user():
 
 
 def cfg_read_task(acquisition):
-    acquisition.ai_channels.add_ai_voltage_chan('Dev1/ai0:1')
+    acquisition.ai_channels.add_ai_voltage_chan('Dev1/ai0')
+    acquisition.ai_channels.add_ai_voltage_chan('Dev1/ai7')
     acquisition.timing.cfg_samp_clk_timing(rate=sampling_freq_in,
                                            sample_mode=constants.AcquisitionType.CONTINUOUS,
                                            samps_per_chan=buffer_in_size_cfg)
@@ -131,9 +131,9 @@ while running:  # make this adapt to number of channels automatically
     # ax2.plot(data[1, -sampling_freq_in * 1:].T,'k')
     ax3.plot(data[1, -sampling_freq_in * 1:].T,'b')
     ax3.set_xlabel('time [s]')
-    ax1.set_ylabel('m/s**2')
-    # ax2.set_ylabel('m/s**2')
-    ax3.set_ylabel('m/s**2')
+    ax1.set_ylabel('V')
+    # ax2.set_ylabel('V')
+    ax3.set_ylabel('V')
     xticks = np.arange(0, data[0, -sampling_freq_in * 5:].size, sampling_freq_in)
     xticklabels = np.arange(0, xticks.size, 1)
     ax3.set_xticks(xticks)

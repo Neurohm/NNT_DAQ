@@ -23,7 +23,7 @@ root.withdraw() # use to hide tkinter window
 sampling_freq_in = 50000  # in Hz
 buffer_in_size = int(sampling_freq_in/1)  # 1 s worth of data
 bufsize_callback = int(buffer_in_size)
-buffer_in_size_cfg = int(buffer_in_size)  
+buffer_in_size_cfg = int(buffer_in_size)
 chans_in = 3  # number of chan
 
 # Write paramteters
@@ -42,6 +42,15 @@ fscvRamp = np.concatenate((np.linspace(Vmin+VRef,Vmax+VRef,num=int(N1)),np.linsp
 fscvRamp1s = np.tile(fscvRamp,int(1/repetetionTime))
 multifscvRamp1s = np.tile(fscvRamp, (2,int(1/repetetionTime)))
 
+# Generating digital output waveform 
+fscvActiveDig = np.ndarray((int(N),),dtype=np.ubyte)
+fscvActiveDig = np.concatenate((np.ones((1,int(2*N1-1)), dtype=np.ubyte),np.zeros((1,int(N-2*N1+1)), dtype=np.ubyte)), axis=None)
+fscvActiveDig1s = np.tile(fscvActiveDig,int(1/repetetionTime))
+
+plt.plot(fscvRamp)
+plt.plot(fscvActiveDig)
+plt.show()
+
 # Plotting parameters
 refresh_rate_plot = 100  # in Hz
 crop = 0  # number of seconds to drop at acquisition start before saving
@@ -56,7 +65,6 @@ def ask_user():
     input("Press ENTER/RETURN to stop acquisition and coil drivers.")
     running = False
 
-
 def cfg_read_task(acquisition):
     acquisition.ai_channels.add_ai_voltage_chan('Dev1/ai0:2')
     acquisition.timing.cfg_samp_clk_timing(rate=sampling_freq_in,
@@ -67,7 +75,9 @@ def cfg_write_task(stimulation):
     stimulation.ao_channels.add_ao_voltage_chan('Dev1/ao0:1')
     stimulation.timing.cfg_samp_clk_timing(rate=sampling_freq_out, sample_mode=constants.AcquisitionType.CONTINUOUS)
 
-
+def cfg_dig_write_task(digital_out):
+    digital_out.do_channels.add_do_chan('Dev1/port0/line0',line_grouping=constants.LineGrouping.CHAN_PER_LINE)
+    digital_out.timing.cfg_samp_clk_timing(rate=sampling_freq_out, sample_mode=constants.AcquisitionType.CONTINUOUS)
 
 def reading_task_callback(task_idx, event_type, num_samples, callback_data):
     global data
@@ -88,7 +98,6 @@ def search_for_folderpath():
     return tempDir
 
 
-
 # Open csv file for writing read data
 file_path_variable = search_for_folderpath()
 filename = file_path_variable + '/fscvData_' + str(datetime.now().strftime("%m%d%h%H%M%S%f"))
@@ -99,14 +108,18 @@ writer = csv.writer(file)
 # Configure and setup the tasks
 task_in = nidaqmx.Task()
 task_out = nidaqmx.Task()
+task_digout = nidaqmx.Task()
 cfg_read_task(task_in)
 cfg_write_task(task_out)
+cfg_dig_write_task(task_digout)
 stream_out = nidaqmx.stream_writers.AnalogMultiChannelWriter(task_out.out_stream, auto_start=False)
-
+stream_dig_out = nidaqmx.stream_writers.DigitalSingleChannelWriter(task_digout.out_stream, auto_start=False)
 
 stream_in = nidaqmx.stream_readers.AnalogMultiChannelReader(task_in.in_stream)
 task_in.register_every_n_samples_acquired_into_buffer_event(bufsize_callback,
                                                             reading_task_callback)
+
+
 
 # Start threading to prompt user to stop
 thread_user = threading.Thread(target=ask_user)
@@ -117,7 +130,9 @@ running = True
 time_start = datetime.now()
 task_in.start()
 task_out.start()
+task_digout.start()
 stream_out.write_many_sample(multifscvRamp1s)
+stream_dig_out.write_many_sample_port_byte(fscvActiveDig1s)
 
 # Plot a visual feedback for the user's mental health
 
