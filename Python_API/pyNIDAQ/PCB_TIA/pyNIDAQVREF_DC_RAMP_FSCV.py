@@ -65,10 +65,12 @@ def ask_user():
 
 
 def cfg_read_task(acquisition):
-    acquisition.ai_channels.add_ai_voltage_chan('Dev1/ai0:2')
+    a=acquisition.ai_channels.add_ai_voltage_chan('Dev1/ai0:2')
     acquisition.timing.cfg_samp_clk_timing(rate=sampling_freq_in,
                                            sample_mode=constants.AcquisitionType.CONTINUOUS,
                                            samps_per_chan=buffer_in_size_cfg)
+    a.ai_rng_high=10.0
+    a.ai_rng_low=-10.0
 
 def cfg_write_task(stimulation):
     stimulation.ao_channels.add_ao_voltage_chan('Dev1/ao0:1')

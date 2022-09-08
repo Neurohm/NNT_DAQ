@@ -33,7 +33,7 @@ sampling_freq_out = 50000 # in Hz
 VRef = 0
 Vmax = 1
 Vmin = -0.5
-Vdc = -2
+Vdc = 2
 rampSlope = 300
 repetetionTime = 100e-3
 rampTime = (Vmax-Vmin)/rampSlope 
@@ -68,10 +68,12 @@ def ask_user():
 
 
 def cfg_read_task(acquisition):
-    acquisition.ai_channels.add_ai_voltage_chan('Dev1/ai0:2',ai_rng_low=-10.0,ai_rng_high=10.0)
+    a = acquisition.ai_channels.add_ai_voltage_chan('Dev1/ai0:2')
     acquisition.timing.cfg_samp_clk_timing(rate=sampling_freq_in,
                                            sample_mode=constants.AcquisitionType.CONTINUOUS,
                                            samps_per_chan=buffer_in_size_cfg)
+    a.ai_rng_low=-10.0
+    a.ai_rng_high=10.0
 
 def cfg_write_task(stimulation):
     stimulation.ao_channels.add_ao_voltage_chan('Dev1/ao0')
