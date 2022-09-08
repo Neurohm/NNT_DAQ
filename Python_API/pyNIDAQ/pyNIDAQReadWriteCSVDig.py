@@ -1,3 +1,6 @@
+## CODE NOT WORKING
+## REASON - There is no hardware timing for digital outputs
+
 from distutils import extension
 import matplotlib.pyplot as plt
 import numpy as np
@@ -40,13 +43,15 @@ N = repetetionTime * sampling_freq_out
 N1 = rampTime * sampling_freq_out
 fscvRamp = np.concatenate((np.linspace(Vmin+VRef,Vmax+VRef,num=int(N1)),np.linspace(Vmax+VRef,Vmin+VRef,num=int(N1))[1:],(Vmin+VRef)*np.ones((1,int(N-2*N1+1)))), axis=None)
 fscvRamp1s = np.tile(fscvRamp,int(1/repetetionTime))
-multifscvRamp1s = np.tile(fscvRamp, (2,int(1/repetetionTime)))
 
 # Generating digital output waveform 
-fscvActiveDig = np.ndarray((int(N),),dtype=np.ubyte)
-fscvActiveDig = np.concatenate((np.ones((1,int(2*N1-1)), dtype=np.ubyte),np.zeros((1,int(N-2*N1+1)), dtype=np.ubyte)), axis=None)
+fscvActiveDig = np.ndarray((int(N),))
+fscvActiveDig = 5*np.concatenate((np.ones((1,int((2*N1)-1))),np.zeros((1,int(N-(2*N1)+1)))), axis=None)
 fscvActiveDig1s = np.tile(fscvActiveDig,int(1/repetetionTime))
 
+multiAO1s = np.vstack((fscvRamp1s,fscvActiveDig1s))
+
+# Uncomment to check output waveforms
 plt.plot(fscvRamp)
 plt.plot(fscvActiveDig)
 plt.show()
@@ -58,6 +63,8 @@ crop = 0  # number of seconds to drop at acquisition start before saving
 # Initialize data placeholders
 buffer_in = np.zeros((chans_in, int(buffer_in_size)))
 data = np.zeros((chans_in, int(buffer_in_size)))  # will contain a first column with zeros but that's fine
+
+digout_data = False
 
 # Definitions of basic functions
 def ask_user():
@@ -77,12 +84,15 @@ def cfg_write_task(stimulation):
 
 def cfg_dig_write_task(digital_out):
     digital_out.do_channels.add_do_chan('Dev1/port0/line0',line_grouping=constants.LineGrouping.CHAN_PER_LINE)
-    digital_out.timing.cfg_samp_clk_timing(rate=sampling_freq_out, sample_mode=constants.AcquisitionType.CONTINUOUS)
 
 def reading_task_callback(task_idx, event_type, num_samples, callback_data):
     global data
     global buffer_in
     global writer
+    global digout_data
+    global task_digout
+    digout_data = not digout_data
+    task_digout.write(digout_data)
     if running:
         stream_in.read_many_sample(buffer_in, num_samples,
                                    timeout=constants.WAIT_INFINITELY)
@@ -112,8 +122,8 @@ task_digout = nidaqmx.Task()
 cfg_read_task(task_in)
 cfg_write_task(task_out)
 cfg_dig_write_task(task_digout)
-stream_out = nidaqmx.stream_writers.AnalogMultiChannelWriter(task_out.out_stream, auto_start=False)
-stream_dig_out = nidaqmx.stream_writers.DigitalSingleChannelWriter(task_digout.out_stream, auto_start=False)
+task_digout.write(digout_data)
+stream_out = nidaqmx.stream_writers.AnalogMultiChannelWriter(task_out.out_stream, auto_start=True)
 
 stream_in = nidaqmx.stream_readers.AnalogMultiChannelReader(task_in.in_stream)
 task_in.register_every_n_samples_acquired_into_buffer_event(bufsize_callback,
@@ -129,10 +139,7 @@ thread_user.start()
 running = True
 time_start = datetime.now()
 task_in.start()
-task_out.start()
-task_digout.start()
-stream_out.write_many_sample(multifscvRamp1s)
-stream_dig_out.write_many_sample_port_byte(fscvActiveDig1s)
+stream_out.write_many_sample(multiAO1s)
 
 # Plot a visual feedback for the user's mental health
 

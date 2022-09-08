@@ -30,7 +30,7 @@ chans_in = 3  # number of chan
 sampling_freq_out = 50000 # in Hz
 
 # Parameters for generation of ramp waveform for FSCV 
-VRef = 1.5
+VRef = 0
 Vmax = 1
 Vmin = -0.5
 rampSlope = 300
@@ -43,7 +43,7 @@ fscvRamp1s = np.tile(fscvRamp,int(1/repetetionTime))
 
 # Generating digital output waveform 
 fscvActiveDig = np.ndarray((int(N),))
-fscvActiveDig = 5*np.concatenate((np.ones((1,int(2*N1-1))),np.zeros((1,int(N-2*N1+1)))), axis=None)
+fscvActiveDig = 0*np.concatenate((np.ones((1,int(2*N1-1))),np.zeros((1,int(N-2*N1+1)))), axis=None)
 fscvActiveDig1s = np.tile(fscvActiveDig,int(1/repetetionTime))
 
 multiAO1s = np.vstack((fscvRamp1s,fscvActiveDig1s))
@@ -65,7 +65,7 @@ def ask_user():
 
 
 def cfg_read_task(acquisition):
-    acquisition.ai_channels.add_ai_voltage_chan('Dev1/ai0:2')
+    acquisition.ai_channels.add_ai_voltage_chan('Dev1/ai0:2',ai_rng_low=-10.0,ai_rng_high=10.0)
     acquisition.timing.cfg_samp_clk_timing(rate=sampling_freq_in,
                                            sample_mode=constants.AcquisitionType.CONTINUOUS,
                                            samps_per_chan=buffer_in_size_cfg)
@@ -98,7 +98,7 @@ def search_for_folderpath():
 
 # Open csv file for writing read data
 file_path_variable = search_for_folderpath()
-filename = file_path_variable + '/fscvData_' + str(datetime.now().strftime("%m%d%h%H%M%S%f"))
+filename = file_path_variable + '/fscvVref_0_RAMP_FSCV_' + str(datetime.now().strftime("%m%d%h%H%M%S%f"))
 extension = '.csv'
 file = open(filename + extension, 'w', newline='')
 writer = csv.writer(file)
@@ -108,7 +108,7 @@ task_in = nidaqmx.Task()
 task_out = nidaqmx.Task()
 cfg_read_task(task_in)
 cfg_write_task(task_out)
-stream_out = nidaqmx.stream_writers.AnalogMultiChannelWriter(task_out.out_stream, auto_start=False)
+stream_out = nidaqmx.stream_writers.AnalogMultiChannelWriter(task_out.out_stream, auto_start=True)
 
 
 stream_in = nidaqmx.stream_readers.AnalogMultiChannelReader(task_in.in_stream)
@@ -123,7 +123,6 @@ thread_user.start()
 running = True
 time_start = datetime.now()
 task_in.start()
-task_out.start()
 stream_out.write_many_sample(multiAO1s)
 
 # Plot a visual feedback for the user's mental health

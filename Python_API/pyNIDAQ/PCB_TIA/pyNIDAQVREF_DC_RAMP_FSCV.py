@@ -98,7 +98,7 @@ def search_for_folderpath():
 
 # Open csv file for writing read data
 file_path_variable = search_for_folderpath()
-filename = file_path_variable + '/fscvData_' + str(datetime.now().strftime("%m%d%h%H%M%S%f"))
+filename = file_path_variable + '/fscvVrefDC_RAMP_FSCV_' + str(datetime.now().strftime("%m%d%h%H%M%S%f"))
 extension = '.csv'
 file = open(filename + extension, 'w', newline='')
 writer = csv.writer(file)
