@@ -41,12 +41,15 @@ N1 = rampTime * sampling_freq_out
 fscvRamp = np.concatenate((np.linspace(Vmin+VRef,Vmax+VRef,num=int(N1)),np.linspace(Vmax+VRef,Vmin+VRef,num=int(N1))[1:],(Vmin+VRef)*np.ones((1,int(N-2*N1+1)))), axis=None)
 fscvRamp1s = np.tile(fscvRamp,int(1/repetetionTime))
 
+fscvBGSub = np.concatenate((np.linspace(Vmin+VRef,Vmax+VRef,num=int(N1)),np.linspace(Vmax+VRef,Vmin+VRef,num=int(N1))[1:],(Vmin+VRef)*np.ones((1,int(N-2*N1+1)))), axis=None)*2
+fscvBGSub1s = np.tile(fscvBGSub,int(1/repetetionTime))
+
 # Generating digital output waveform 
 fscvActiveDig = np.ndarray((int(N),))
 fscvActiveDig = 0*np.concatenate((np.ones((1,int(2*N1-1))),np.zeros((1,int(N-2*N1+1)))), axis=None)
 fscvActiveDig1s = np.tile(fscvActiveDig,int(1/repetetionTime))
 
-multiAO1s = np.vstack((fscvRamp1s,fscvActiveDig1s))
+multiAO1s = np.vstack((fscvRamp1s,fscvBGSub1s))
 
 
 # Plotting parameters

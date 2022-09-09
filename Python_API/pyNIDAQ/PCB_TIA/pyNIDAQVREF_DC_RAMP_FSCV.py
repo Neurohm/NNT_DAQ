@@ -41,12 +41,15 @@ N1 = rampTime * sampling_freq_out
 fscvRamp = np.concatenate((np.linspace(Vmin+VRef,Vmax+VRef,num=int(N1)),np.linspace(Vmax+VRef,Vmin+VRef,num=int(N1))[1:],(Vmin+VRef)*np.ones((1,int(N-2*N1+1)))), axis=None)
 fscvRamp1s = np.tile(fscvRamp,int(1/repetetionTime))
 
+fscvBGSub = np.concatenate((np.linspace(Vmin+VRef,Vmax+VRef,num=int(N1)),np.linspace(Vmax+VRef,Vmin+VRef,num=int(N1))[1:],(Vmin+VRef)*np.ones((1,int(N-2*N1+1)))), axis=None)*2
+fscvBGSub1s = np.tile(fscvBGSub,int(1/repetetionTime))
+
 # Generating digital output waveform 
 fscvActiveDig = np.ndarray((int(N),))
-fscvActiveDig = 5*np.concatenate((np.ones((1,int(2*N1-1))),np.zeros((1,int(N-2*N1+1)))), axis=None)
+fscvActiveDig = 0*np.concatenate((np.ones((1,int(2*N1-1))),np.zeros((1,int(N-2*N1+1)))), axis=None)
 fscvActiveDig1s = np.tile(fscvActiveDig,int(1/repetetionTime))
 
-multiAO1s = np.vstack((fscvRamp1s,fscvActiveDig1s))
+multiAO1s = np.vstack((fscvRamp1s,fscvBGSub1s))
 
 
 # Plotting parameters
@@ -75,7 +78,6 @@ def cfg_read_task(acquisition):
 def cfg_write_task(stimulation):
     stimulation.ao_channels.add_ao_voltage_chan('Dev1/ao0:1')
     stimulation.timing.cfg_samp_clk_timing(rate=sampling_freq_out, sample_mode=constants.AcquisitionType.CONTINUOUS)
-
 
 
 def reading_task_callback(task_idx, event_type, num_samples, callback_data):
@@ -110,7 +112,7 @@ task_in = nidaqmx.Task()
 task_out = nidaqmx.Task()
 cfg_read_task(task_in)
 cfg_write_task(task_out)
-stream_out = nidaqmx.stream_writers.AnalogMultiChannelWriter(task_out.out_stream, auto_start=False)
+stream_out = nidaqmx.stream_writers.AnalogMultiChannelWriter(task_out.out_stream, auto_start=True)
 
 
 stream_in = nidaqmx.stream_readers.AnalogMultiChannelReader(task_in.in_stream)
@@ -125,7 +127,6 @@ thread_user.start()
 running = True
 time_start = datetime.now()
 task_in.start()
-task_out.start()
 stream_out.write_many_sample(multiAO1s)
 
 # Plot a visual feedback for the user's mental health

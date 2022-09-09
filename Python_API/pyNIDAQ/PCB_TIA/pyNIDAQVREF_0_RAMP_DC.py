@@ -44,13 +44,16 @@ N1 = rampTime * sampling_freq_out
 fscvRamp = np.ones((1,int(N)))*Vdc
 fscvRamp1s = np.tile(fscvRamp,int(1/repetetionTime))
 
-# Generating digital output waveform 
-fscvActiveDig = np.ndarray((int(N),))
-fscvActiveDig = 5*np.concatenate((np.ones((1,int(2*N1-1))),np.zeros((1,int(N-2*N1+1)))), axis=None)
-fscvActiveDig1s = np.tile(fscvActiveDig,int(1/repetetionTime))
+fscvBGSub = np.ones((1,int(N)))*Vdc*2
+fscvBGSub1s = np.tile(fscvBGSub,int(1/repetetionTime))
 
-# multiAO1s = np.vstack((fscvRamp1s,fscvActiveDig1s))
-multiAO1s = fscvRamp1s
+# # Generating digital output waveform 
+# fscvActiveDig = np.ndarray((int(N),))
+# fscvActiveDig = 5*np.concatenate((np.ones((1,int(2*N1-1))),np.zeros((1,int(N-2*N1+1)))), axis=None)
+# fscvActiveDig1s = np.tile(fscvActiveDig,int(1/repetetionTime))
+
+multiAO1s = np.vstack((fscvRamp1s,fscvBGSub1s))
+#multiAO1s = fscvRamp1s
 
 # Plotting parameters
 refresh_rate_plot = 100  # in Hz
@@ -76,7 +79,7 @@ def cfg_read_task(acquisition):
     a.ai_rng_high=10.0
 
 def cfg_write_task(stimulation):
-    stimulation.ao_channels.add_ao_voltage_chan('Dev1/ao0')
+    stimulation.ao_channels.add_ao_voltage_chan('Dev1/ao0:1')
     stimulation.timing.cfg_samp_clk_timing(rate=sampling_freq_out, sample_mode=constants.AcquisitionType.CONTINUOUS)
 
 
