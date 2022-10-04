@@ -31,10 +31,10 @@ sampling_freq_out = 50000 # in Hz
 
 # Parameters for generation of ramp waveform for FSCV 
 VRef = 0
-Vmax = 1
+Vmax = 1.3
 Vmin = -0.5
-Vdc = 2
-rampSlope = 300
+Vdc = -1.5
+rampSlope = 400
 repetetionTime = 100e-3
 rampTime = (Vmax-Vmin)/rampSlope 
 N = repetetionTime * sampling_freq_out
