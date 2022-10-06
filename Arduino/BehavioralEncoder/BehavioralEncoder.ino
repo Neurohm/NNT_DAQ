@@ -31,7 +31,7 @@ int sampEncoderPosPrev = 0;
 int changePos = 0;
 unsigned long sampTime = 0;
 int encoder_flag = 0;
-
+float totalPos = 0;
 int fs_encoder = 500; // the sampling frequency of the encoder 
 
 void setup() 
@@ -83,6 +83,7 @@ void loop()
     encoder0PosTot = 0;
     previousState = LOW;
     sampEncoderPosPrev = 0;
+    totalPos = 0;
   }
   if(flag==1)
   {
@@ -114,18 +115,20 @@ void loop()
       Serial.print(convertPos);
       Serial.print("\t");
       Serial.println((sampTime-microsFix)/1000);
+      totalPos = totalPos + convertPos;
       sampEncoderPosPrev = sampEncoderPos;
     }
     encoder_flag = 0;
   }
 
-  if(convertPos >= 50)
+  if(totalPos >= 50)
   {
     flag = 0;
     convertPos = 0;
     sampEncoderPos = 0;
     sampEncoderPosPrev = 0;
     encoder0PosTot = 0;
+    totalPos = 0;
     digitalWrite(output,HIGH);
     digitalWrite(LED2,HIGH);
     digitalWrite(valve,HIGH);
